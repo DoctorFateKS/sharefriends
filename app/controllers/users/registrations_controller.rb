@@ -2,6 +2,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_sign_up_path_for(resource)
-    new_profile_path # Or :prefix_to_your_route
+    explore_path # Redirige vers la liste des événements après inscription
+  end
+
+  def after_sign_in_path_for(resource)
+    explore_path # Redirige après connexion
   end
 end
+
