@@ -1,0 +1,23 @@
+<h1><%= @event.title %></h1>
+<p>📍 <strong>Adresse :</strong> <%= @event.address %></p>
+<p>🕒 <strong>Date :</strong> <%= @event.date.strftime("%d/%m/%Y %H:%M") %></p>
+<p>📝 <strong>Description :</strong> <%= @event.description %></p>
+<p>😃 <strong>Ambiance :</strong> <%= @event.mood %></p>
+<p>🎭 <strong>Activité :</strong> <%= @event.activity %></p>
+<p>👥 <strong>Max Participants :</strong> <%= @event.max_participants %></p>
+
+<% if user_signed_in? %>
+  <% participation = current_user.participations.find_by(event: @event) %>
+
+  <% if participation.blank? %>
+    <%= button_to "🙋‍♂️ S'inscrire", event_participations_path(@event), method: :post, class: "btn btn-success" %>
+  <% elsif participation.accepted? %>
+    <%= link_to "💬 Rejoindre le Chat", event_chatroom_path(@event), class: "btn btn-primary" %>
+  <% else %>
+    <p>⏳ En attente de validation...</p>
+  <% end %>
+<% end %>
+
+<%= link_to "⬅ Retour aux événements", events_path, class: "btn btn-secondary" %>
+
+
