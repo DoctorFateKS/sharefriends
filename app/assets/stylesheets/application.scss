@@ -12,65 +12,64 @@
 @import "pages/index";
 
 /* Navbar principale */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background: #007bff;
-  color: white;
-}
+// .navbar {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   padding: 15px 20px;
+//   background: #007bff;
+//   color: white;
+// }
 
-.navbar-brand {
-  font-size: 24px;
-  font-weight: bold;
-  text-decoration: none;
-  color: white;
-}
+// .navbar-brand {
+//   font-size: 24px;
+//   font-weight: bold;
+//   text-decoration: none;
+//   color: white;
+// }
 
-.nav-items {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
+// .nav-items {
+//   display: flex;
+//   align-items: center;
+//   gap: 20px;
+// }
 
-.user-mood {
-  font-size: 16px;
-  color: yellow;
-  font-weight: bold;
-}
+// .user-mood {
+//   font-size: 16px;
+//   color: yellow;
+//   font-weight: bold;
+// }
 
-.dashboard-link {
-  background: #ffcc00;
-  color: black;
-  font-weight: bold;
-  border-radius: 20px;
-  padding: 8px 15px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
+// .dashboard-link {
+//   background: #ffcc00;
+//   color: black;
+//   font-weight: bold;
+//   border-radius: 20px;
+//   padding: 8px 15px;
+//   display: flex;
+//   align-items: center;
+//   gap: 5px;
+// }
 
-.badge {
-  background: red;
-  color: white;
-  font-size: 14px;
-  padding: 3px 8px;
-  border-radius: 12px;
-  margin-left: 5px;
-}
+// .badge {
+//   background: red;
+//   color: white;
+//   font-size: 14px;
+//   padding: 3px 8px;
+//   border-radius: 12px;
+//   margin-left: 5px;
+// }
 
-.profile-link {
-  background: #17a2b8;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 20px;
-}
+// .profile-link {
+//   background: #17a2b8;
+//   color: white;
+//   padding: 8px 12px;
+//   border-radius: 20px;
+// }
 
-.btn-warning {
-  background: orange;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 5px;
-}
-
+// .btn-warning {
+//   background: orange;
+//   color: white;
+//   padding: 8px 12px;
+//   border-radius: 5px;
+// }

@@ -1,34 +1,39 @@
-<nav class="navbar">
-  <!-- Logo cliquable à gauche -->
-  <%= link_to "Sharefriends", user_signed_in? ? explore_path : root_path, class: "navbar-brand" %>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+      <%= link_to user_signed_in? ? authenticated_root_path : root_path, class: "navbar-brand" do %>
+        <%= image_tag "logo2.png" %>
+      <% end %>
 
-  <% if user_signed_in? %>
     <div class="nav-items">
-      <!-- Mood actuel -->
-      <% if current_user.profile.present? %>
-        <div class="user-mood">
-          😃 <strong><%= current_user.profile.mood %></strong>
-        </div>
+      <% if user_signed_in? %>
+        <!-- Mood actuel -->
+        <% if current_user.profile.present? %>
+          <div class="user-mood">
+            😃 <strong><%= current_user.profile.mood %></strong>
+          </div>
+        <% else %>
+          <%= link_to "Créer mon profil", new_profile_path, class: "btn btn-warning" %>
+        <% end %>
+
+        <!-- Lien vers le Dashboard -->
+        <%= link_to dashboard_path, class: "nav-link dashboard-link" do %>
+          🏠 Dashboard
+          <% if current_user.accepted_events.any? %>
+            <span class="badge"><%= current_user.accepted_events.count %></span>
+          <% end %>
+        <% end %>
+
+        <!-- Lien vers le Profil -->
+        <% if current_user.profile.present? %>
+          <%= link_to edit_profile_path(current_user.profile), class: "nav-link profile-link" do %>
+            👤 Mon Profil
+          <% end %>
+        <% end %>
       <% else %>
-        <%= link_to "Créer mon profil", new_profile_path, class: "btn btn-warning" %>
-      <% end %>
+        <%= link_to "Se connecter", new_user_session_path, class: "nav-link" %>
 
-      <!-- Lien vers le Dashboard -->
-      <%= link_to dashboard_path, class: "nav-link dashboard-link" do %>
-        🏠 Dashboard
-        <% if current_user.accepted_events.any? %>
-          <span class="badge"><%= current_user.accepted_events.count %></span>
-        <% end %>
-      <% end %>
 
-      <!-- Lien vers le Profil -->
-      <% if current_user.profile.present? %>
-        <%= link_to edit_profile_path(current_user.profile), class: "nav-link profile-link" do %>
-          👤 Mon Profil
-        <% end %>
       <% end %>
-
     </div>
-  <% end %>
-</nav>
-
+  </div>
+</div>

@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
     @profile.user = current_user
     if @profile.save
-      redirect_to explore_path, notice: "Profil créé avec succès !"
+      redirect_to authenticated_root_path, notice: "Profil créé avec succès !"
     else
       render :new
     end
@@ -36,4 +36,3 @@ class ProfilesController < ApplicationController
     params.require(:profile).permit(:first_name, :last_name, :mood, hobbie: [])
   end
 end
-
