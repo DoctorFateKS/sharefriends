@@ -5,9 +5,13 @@
   <% if user_signed_in? %>
     <div class="nav-items">
       <!-- Mood actuel -->
-      <div class="user-mood">
-        😃 <strong><%= current_user.mood %></strong>
-      </div>
+      <% if current_user.profile.present? %>
+        <div class="user-mood">
+          😃 <strong><%= current_user.profile.mood %></strong>
+        </div>
+      <% else %>
+        <%= link_to "Créer mon profil", new_profile_path, class: "btn btn-warning" %>
+      <% end %>
 
       <!-- Lien vers le Dashboard -->
       <%= link_to dashboard_path, class: "nav-link dashboard-link" do %>
@@ -18,9 +22,12 @@
       <% end %>
 
       <!-- Lien vers le Profil -->
-      <%= link_to edit_profile_path, class: "nav-link profile-link" do %>
-        👤 Mon Profil
+      <% if current_user.profile.present? %>
+        <%= link_to edit_profile_path(current_user.profile), class: "nav-link profile-link" do %>
+          👤 Mon Profil
+        <% end %>
       <% end %>
+
     </div>
   <% end %>
 </nav>

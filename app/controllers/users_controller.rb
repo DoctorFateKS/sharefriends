@@ -7,3 +7,4 @@ class UsersController < ApplicationController
     @chatrooms = Chatroom.joins(:event).where(events: { user_id: @user.id }) # Chatrooms des events créés
   end
 end
+
