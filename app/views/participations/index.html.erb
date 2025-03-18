@@ -1,0 +1,24 @@
+<h1>Mes participations</h1>
+
+<h2>En attente</h2>
+<ul>
+  <% current_user.pending_events.each do |event| %>
+    <li>
+      <%= link_to event.title, event_path(event) %> - En attente de confirmation
+      <%= link_to "❌ Annuler", event_participation_path(event, event.participations.find_by(user: current_user)),
+                  method: :delete, data: { confirm: "Es-tu sûr de vouloir annuler ta participation ?" }, class: "btn btn-warning" %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Acceptées</h2>
+<ul>
+  <% current_user.accepted_events.each do |event| %>
+    <li>
+      <%= link_to event.title, event_path(event) %> - Vous participez à cet événement !
+      <%= link_to "❌ Annuler", event_participation_path(event, event.participations.find_by(user: current_user)),
+                  method: :delete, data: { confirm: "Es-tu sûr de vouloir annuler ta participation ?" }, class: "btn btn-warning" %>
+    </li>
+  <% end %>
+</ul>
+

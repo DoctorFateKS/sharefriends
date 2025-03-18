@@ -1,0 +1,22 @@
+<h1>📅 Explorer les Événements</h1>
+
+<%= link_to "➕ Créer un Événement", new_event_path, class: "btn btn-success" if user_signed_in? %>
+
+<div class="events-grid">
+  <% @events.each do |event| %>
+    <div class="event-card">
+      <h3><%= link_to event.title, event_path(event) %></h3>
+      <p>📍 <%= event.address %></p>
+      <p>🕒 <%= event.date.strftime("%d/%m/%Y %H:%M") %></p>
+      <p>👥 Participants max : <%= event.max_participants %></p>
+
+      <div class="event-actions">
+        <%= link_to "🔍 Voir", event_path(event), class: "btn btn-info" %>
+        <% if user_signed_in? && current_user == event.user %>
+          <%= link_to "🗑 Supprimer", event_path(event), method: :delete, data: { confirm: "Es-tu sûr de vouloir supprimer cet événement ?" }, class: "btn btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
