@@ -24,7 +24,7 @@
   </div>
 <% else %>
   <p>Tu n'as pas encore d'événements confirmés. Inscris-toi à un événement et commence l'aventure !</p>
-  <%= link_to "Explorer les événements", explore_path, class: "btn btn-success" %>
+  <%= link_to "Explorer les événements", authenticated_root_path, class: "btn btn-success" %>
 <% end %>
 
 <h2>💬 Mes Chatrooms</h2>
@@ -40,4 +40,3 @@
 <% else %>
   <p>Aucune discussion en cours. Rejoins un événement pour discuter avec les autres participants !</p>
 <% end %>
-
