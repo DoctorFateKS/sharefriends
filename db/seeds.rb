@@ -9,6 +9,7 @@
 #   end
 
 require 'faker'
+Faker::Config.locale = 'fr'
 
 # Clear all data
 Message.destroy_all
@@ -41,12 +42,12 @@ end
 events = []
 # Pour chaque user, on crée 3 events
 users.each do |user|
-  3.times do
+  3.times do |i|
     event = Event.create!(
       user: user,
-      title: Faker::Lorem.sentence,
+      title: "titre de l'event #{i+1}",
       description: Faker::Lorem.paragraph,
-      address: Faker::Address.full_address,
+      address: Faker::Address.street_address,
       date: Faker::Time.forward(days: 30, period: :evening),
       mood: ["Fêtard", "Créatif", "L'explorateur", "Zen/Posé"].sample,
       status: ["pending", "accepted", "rejected"].sample,
