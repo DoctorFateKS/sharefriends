@@ -3,6 +3,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
+    redirect_to new_profile_path if current_user && current_user.profile.nil?
     @events = Event.all
   end
 
@@ -24,6 +25,7 @@ class EventsController < ApplicationController
   end
 
   def edit
+  
   end
 
   def update
@@ -33,7 +35,7 @@ class EventsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     if current_user == @event.user
       @event.destroy
