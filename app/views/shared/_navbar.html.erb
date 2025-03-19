@@ -10,7 +10,7 @@
       <% if current_user %>
         <!-- Mood -->
         <div class="user-mood me-3">
-         <strong><%= current_user.profile.mood if current_user.profile.present?%></strong>
+         <strong><%= current_user.profile.mood if current_user.profile.present? %></strong>
         </div>
 
         <!-- Dropdown Menu Profil -->
@@ -22,6 +22,7 @@
             <li>
               <% if current_user && current_user.profile.present? %>
               <%= link_to "Mon Profil", edit_profile_path(current_user.profile), class: "dropdown-item" %>
+              <% end %>
             </li>
             <li>
               <%= link_to dashboard_path, class: "dropdown-item" do %>
