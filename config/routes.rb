@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "/dashboard", to: "pages#dashboard", as: :dashboard
 
   authenticated do
-    resources :profiles, only: [:new, :create, :edit, :update]
+    resources :profiles, only: [:show, :new, :create, :edit, :update]
     resources :events do
       resources :participations, only: [:create, :update]
       resources :chatrooms, only: [:show] do
