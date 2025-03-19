@@ -1,0 +1,71 @@
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  margin-top: 100px;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Image */
+.event-image img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Contenu */
+.event-content {
+  padding: 15px;
+}
+
+/* Titre */
+.event-title {
+  color: #333;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Actions */
+.event-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+/* Boutons */
+.btn {
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.btn-info {
+  background: #17a2b8;
+  color: white;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}

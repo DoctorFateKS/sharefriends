@@ -1,6 +1,8 @@
 <h1>Bienvenue <%= current_user.first_name %> ! 🎉</h1>
 <p>Retrouve ici tes événements confirmés et accède rapidement aux discussions !</p>
 
+<%= link_to "➕ Créer un Événement", new_event_path, class: "btn btn-success" if user_signed_in? %>
+
 <h2>📅 Mes Événements Confirmés</h2>
 
 <% if @participations.any? %>
