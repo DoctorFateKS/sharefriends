@@ -4,7 +4,12 @@ class EventsController < ApplicationController
 
   def index
     redirect_to new_profile_path if current_user && current_user.profile.nil?
-    @events = Event.all
+    if params[:query].present?
+      sql_query = "title ILIKE :query OR address ILIKE :query"
+      @events = Event.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @events = Event.all
+    end
   end
 
   def show
@@ -25,7 +30,7 @@ class EventsController < ApplicationController
   end
 
   def edit
-  
+
   end
 
   def update
