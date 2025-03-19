@@ -1,3 +1,10 @@
+<div class="container">
+  <%= form_tag events_path, method: :get do %>
+    <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Trouve un event" %>
+    <%= submit_tag "Rechercher", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
 <div class="events-grid">
   <% @events.each do |event| %>
     <%= link_to event_path(event), class: "event-card-link" do %>
