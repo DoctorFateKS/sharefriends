@@ -39,8 +39,8 @@ users = []
 end
 
 event_data = [
-  { title: "Concert Jazz & Soul", address: "New Morning, 7-9 Rue des Petites Écuries, 75010 Paris" },
-  { title: "Conférence Tech & IA", address: "Station F, 5 Parvis Alan Turing, 75013 Paris" },
+  { title: "Concert Jazz & Soul", address: "New Morning, 7-9 Rue des Petites Écuries, 75010 Paris"},
+  { title: "Conférence Tech & IA", address: "Station F, 5 Parvis Alan Turing, 75013 Paris"},
   { title: "Exposition d’Art Contemporain", address: "Centre Pompidou, Place Georges-Pompidou, 75004 Paris" },
   { title: "Atelier Cuisine Française", address: "L'Atelier des Chefs, 10 Rue de Penthièvre, 75008 Paris" },
   { title: "Soirée Stand-Up Comedy", address: "Paname Art Café, 14 Rue de la Fontaine au Roi, 75011 Paris" },
@@ -70,7 +70,9 @@ users.each do |user|
       latitude: Faker::Address.latitude,
       longitude: Faker::Address.longitude
     )
-
+    file = URI.parse("https://res.cloudinary.com/dhixxvne7/image/upload/v1742479415/240F306887089uWap0Lt9MBANoFTG4vrzqJytQW6RqFSajpg_6489afbf59a0a_z1oyy0.jpg").open
+    event.photo.attach(io: file, filename: "event.jpg", content_type: "image/jpeg")
+    event.save
     events << event
 
     # Création d'une chatroom pour chaque événement

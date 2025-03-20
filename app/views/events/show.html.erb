@@ -1,8 +1,10 @@
+
 <body>
   <div class="container">
     <section class="event">
-    <img src="https://static.actu.fr/uploads/2017/07/2D9A3772.jpg-Visionneuse-de-photos-Windows-960x640.jpg" alt="Ambiance de l'événement" class="event-image">
+      <%= cl_image_tag @event.photo.key, height: 300, width: 400, crop: :fill %> alt="Ambiance de l'événement" class="event-image">
     <div class="event-info">
+
 
       <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
     </div>
