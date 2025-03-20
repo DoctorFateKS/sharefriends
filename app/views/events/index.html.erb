@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container-search">
   <%= form_tag events_path, class: "form d-flex", method: :get do %>
     <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Trouve un event" %>
-    <%= submit_tag "Rechercher", class: "btn button" %>
+    <%= submit_tag "Rechercher", class: "btn button " %>
   <% end %>
 </div>
 

@@ -15,7 +15,7 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 125px;
+  width: 200px;
 }
 .nav-item{
   color: antiquewhite;
@@ -31,4 +31,20 @@
   -webkit-text-stroke-color: black;
   margin-right: 10px;
   z-index: 0;
+}
+.avatar{
+  border-radius: 50%;
+}
+
+.button-navbar{
+  background-color: rgb(204, 176, 176);
+  border-color:rgb(204, 176, 176);
+  border: none;
+}
+.dropdown-item{
+  font-family: 'Alfa Slab One';
+  color: #742929;
+}
+.dropdown-menu{
+  background-color: rgb(204, 176, 176);
 }

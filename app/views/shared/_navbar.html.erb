@@ -15,8 +15,8 @@
 
         <!-- Dropdown Menu Profil -->
         <div class="dropdown">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <%# <%= image_tag(current_user.profile.avatar || "default-avatar.png", class: "profile-avatar") %>
+          <button class="button-navbar dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= cl_image_tag current_user.profile.photo.key, class:"avatar" %>
           </button>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
             <li>
@@ -28,13 +28,13 @@
               <%= link_to dashboard_path, class: "dropdown-item" do %>
                 Dashboard
                 <% if current_user.accepted_events.any? %>
-                  <span class="badge bg-danger"><%= current_user.accepted_events.count %></span>
+                  <span class="badge"><%= current_user.accepted_events.count %></span>
                 <% end %>
               <% end %>
             </li>
             <li><hr class="dropdown-divider"></li>
             <li>
-              <%= link_to "Se Déconnecter", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Es-tu sûr de vouloir te déconnecter ?" }, class: "dropdown-item text-danger" %>
+              <%= link_to "Se Déconnecter", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Es-tu sûr de vouloir te déconnecter ?" }, class: "dropdown-item" %>
             </li>
           </ul>
         </div>

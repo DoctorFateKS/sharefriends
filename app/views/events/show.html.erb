@@ -2,7 +2,7 @@
 <body>
   <div class="container-show">
     <section class="event">
-      <%= cl_image_tag @event.photo.key, height: 300, width: 400, crop: :fill %> alt="Ambiance de l'événement" class="event-image">
+      <%= cl_image_tag @event.photo.key, class:"event-image" %>
     <div class="event-info">
         <h1><%= @event.title %></h1>
         <p> <%= @event.address %></p>
@@ -18,7 +18,7 @@
           <% if participation.blank? %>
             <%= button_to "Participer", event_participations_path(@event), method: :post, class: "btn button-event" %>
           <% elsif participation.accepted? %>
-            <%= link_to "💬 Rejoindre le Chat", event_chatroom_path(@event), class: "btn btn-primary" %>
+            <%= link_to "💬 Rejoindre le Chat", event_chatroom_path(@event), class: "btn button-event" %>
           <% else %>
             <p>⏳ En attente de validation...</p>
           <% end %>
