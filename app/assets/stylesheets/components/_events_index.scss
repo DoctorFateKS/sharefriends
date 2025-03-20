@@ -5,7 +5,7 @@
   display: flex;
 }
 
-.form-control {
+.events .form-control {
   width: 500px;
 }
 
@@ -15,6 +15,7 @@
   gap: 20px;
   padding: 20px;
   margin-top: 50px;
+
 }
 
 .event-card {
@@ -46,7 +47,7 @@
 
 /* Titre */
 .event-title {
-  color: #333;
+  color: #eeeeee;
   text-decoration: none;
   font-size: 20px;
   font-weight: bold;
@@ -60,23 +61,34 @@
 }
 
 /* Boutons */
-.btn {
-  padding: 8px 12px;
+// .btn {
+//   padding: 8px 12px;
+//   border-radius: 5px;
+//   font-size: 14px;
+//   text-decoration: none;
+// }
+
+// .btn-info {
+//   background: #17a2b8;
+//   color: white;
+// }
+
+// .btn-danger {
+//   background: #dc3545;
+//   color: white;
+// }
+
+// .btn:hover {
+//   opacity: 0.8;
+// }
+
+.button{
+  padding: 13px;
+  font-family: arial;
+  font-size: 1em;
+  color: #eeece1;
+  background-color: #53424d;
   border-radius: 5px;
-  font-size: 14px;
-  text-decoration: none;
-}
-
-.btn-info {
-  background: #17a2b8;
-  color: white;
-}
-
-.btn-danger {
-  background: #dc3545;
-  color: white;
-}
-
-.btn:hover {
-  opacity: 0.8;
+  border: 1px solid #595959;
+  box-shadow: 5px 3px 8px #0c0c0c;
 }

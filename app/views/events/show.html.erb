@@ -1,29 +1,45 @@
-<h1><%= @event.title %></h1>
-<p>📍 <strong>Adresse :</strong> <%= @event.address %></p>
-<p>🕒 <strong>Date :</strong> <%= @event.date.strftime("%d/%m/%Y %H:%M") %></p>
-<p>📝 <strong>Description :</strong> <%= @event.description %></p>
-<p>😃 <strong>Ambiance :</strong> <%= @event.mood %></p>
-<p>🎭 <strong>Activité :</strong> <%= @event.activity %></p>
-<p>👥 <strong>Max Participants :</strong> <%= @event.max_participants %></p>
+<body>
+  <div class="container">
+    <section class="event">
+    <img src="https://static.actu.fr/uploads/2017/07/2D9A3772.jpg-Visionneuse-de-photos-Windows-960x640.jpg" alt="Ambiance de l'événement" class="event-image">
+    <div class="event-info">
+      <p><strong>Nombre de participants :</strong> N</p>
+      <p><strong>Date/Heure/Lieu :</strong> 20/03/2025 - 19:00 - Paris</p>
+      <h2>event.title </h2>
+      <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+    </div>
+
+
+    <% <% <h1><%= @event.title %></h1> %>
+    <%# <% <p>📍 <strong>Adresse :</strong> <%= @event.address %></p> %>
+    <%# <p>🕒 <strong>Date :</strong> <%= @event.date.strftime("%d/%m/%Y %H:%M") %></p>
+    <%# <p>📝 <strong>Description :</strong> <%= @event.description %></p>
+    <%# <p class="mood"> <strong>Ambiance :</strong> <%= @event.mood %></p>
+    <%# <p>🎭 <strong>Activité :</strong> <%= @event.activity %></p>
+    <%# <p>👥 <strong>Max Participants :</strong> <%= @event.max_participants %></p>
+    <% if user_signed_in? %>
+      <% participation = current_user.participations.find_by(event: @event) %>
+
+      <% if participation.blank? %>
+        <%= button_to "🙋‍♂️ S'inscrire", event_participations_path(@event), method: :post, class: "btn btn-success" %>
+      <% elsif participation.accepted? %>
+        <%= link_to "💬 Rejoindre le Chat", event_chatroom_path(@event), class: "btn btn-primary" %>
+      <% else %>
+        <p>⏳ En attente de validation...</p>
+      <% end %>
+    <% end %>
+
+    <div style="width: 25%; height: 300px;"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+
+    <%= link_to "⬅ Retour aux événements", events_path, class: "btn btn-secondary" %>
+  </div>
+</body>
 
 
 
-<% if user_signed_in? %>
-  <% participation = current_user.participations.find_by(event: @event) %>
 
-  <% if participation.blank? %>
-    <%= button_to "🙋‍♂️ S'inscrire", event_participations_path(@event), method: :post, class: "btn btn-success" %>
-  <% elsif participation.accepted? %>
-    <%= link_to "💬 Rejoindre le Chat", event_chatroom_path(@event), class: "btn btn-primary" %>
-  <% else %>
-    <p>⏳ En attente de validation...</p>
-  <% end %>
-<% end %>
 
-<div style="width: 25%; height: 300px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
-
-<%= link_to "⬅ Retour aux événements", events_path, class: "btn btn-secondary" %>
