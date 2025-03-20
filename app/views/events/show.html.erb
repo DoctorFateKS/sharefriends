@@ -6,6 +6,8 @@
 <p>🎭 <strong>Activité :</strong> <%= @event.activity %></p>
 <p>👥 <strong>Max Participants :</strong> <%= @event.max_participants %></p>
 
+
+
 <% if user_signed_in? %>
   <% participation = current_user.participations.find_by(event: @event) %>
 
@@ -18,6 +20,10 @@
   <% end %>
 <% end %>
 
+<div style="width: 100%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+
 <%= link_to "⬅ Retour aux événements", events_path, class: "btn btn-secondary" %>
-
-
