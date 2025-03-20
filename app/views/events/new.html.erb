@@ -36,8 +36,12 @@
     <%= form.number_field :max_participants, class: "form-control" %>
   </div>
 
+   <div class="form-group">
+    <%= cl_image_tag @event.photo.key, height: 200, width: 200, crop: :fill %>
+    <%= f.input :photo, as: :file %>
+  </div>
+
   <%= form.submit "Créer l'événement", class: "btn btn-success" %>
 <% end %>
 
 <%= link_to "⬅ Retour", events_path, class: "btn btn-secondary" %>
-
