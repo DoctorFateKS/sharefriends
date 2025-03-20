@@ -1,46 +1,48 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <!-- Logo -->
-    <%= link_to authenticated_root_path, class: "navbar-brand" do %>
-      <%= image_tag "logo2.png" %>
-    <% end %>
-
-    <!-- Navigation droite -->
-    <div class="ms-auto d-flex align-items-center">
-      <% if current_user %>
-        <!-- Mood -->
-        <div class="user-mood me-3">
-         <strong><%= current_user.profile.mood if current_user.profile.present? %></strong>
-        </div>
-
-        <!-- Dropdown Menu Profil -->
-        <div class="dropdown">
-          <button class="button-navbar dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <%= cl_image_tag current_user.profile.photo.key, class:"avatar" %>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-            <li>
-              <% if current_user && current_user.profile.present? %>
-              <%= link_to "Mon Profil", profile_path(current_user.profile), class: "dropdown-item" %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to dashboard_path, class: "dropdown-item" do %>
-                Dashboard
-                <% if current_user.accepted_events.any? %>
-                  <span class="badge"><%= current_user.accepted_events.count %></span>
-                <% end %>
-              <% end %>
-            </li>
-            <li><hr class="dropdown-divider"></li>
-            <li>
-              <%= link_to "Se Déconnecter", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Es-tu sûr de vouloir te déconnecter ?" }, class: "dropdown-item" %>
-            </li>
-          </ul>
-        </div>
-      <% else %>
-        <%= link_to "Se connecter", new_user_session_path, class: "nav-link" %>
+<div class="background">
+  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+    <div class="container-fluid">
+      <!-- Logo -->
+      <%= link_to authenticated_root_path, class: "navbar-brand" do %>
+        <%= image_tag "logo2.png" %>
       <% end %>
+
+      <!-- Navigation droite -->
+      <div class="ms-auto d-flex align-items-center">
+        <% if current_user %>
+          <!-- Mood -->
+          <div class="user-mood me-3">
+          <strong><%= current_user.profile.mood if current_user.profile.present? %></strong>
+          </div>
+
+          <!-- Dropdown Menu Profil -->
+          <div class="dropdown">
+            <button class="button-navbar dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= cl_image_tag current_user.profile.photo.key, class:"avatar" %>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+              <li>
+                <% if current_user && current_user.profile.present? %>
+                <%= link_to "Mon Profil", profile_path(current_user.profile), class: "dropdown-item" %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to dashboard_path, class: "dropdown-item" do %>
+                  Dashboard
+                  <% if current_user.accepted_events.any? %>
+                    <span class="badge"><%= current_user.accepted_events.count %></span>
+                  <% end %>
+                <% end %>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <%= link_to "Se Déconnecter", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Es-tu sûr de vouloir te déconnecter ?" }, class: "dropdown-item" %>
+              </li>
+            </ul>
+          </div>
+        <% else %>
+          <%= link_to "Se connecter", new_user_session_path, class: "nav-link" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
