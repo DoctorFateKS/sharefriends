@@ -1,8 +1,12 @@
-.container {
+.container-show {
   margin-top: 150px;
   justify-content: center;
   align-items: center;
   display: flex;
+  background-color: rgba(224, 224, 223, 0.3);
+  margin: 200px 300px 150px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
 }
 .form-group{
 color: antiquewhite;
@@ -16,10 +20,50 @@ color: antiquewhite;
   width: 100%;
   border-radius: 5px;
   justify-content: center;
-  max-width: 1200px; 
+  max-width: 1200px;
+  height: auto;
+  aspect-ratio: 5 / 1;
+  object-fit: cover;
+  display: block;
+  margin: 100px auto;
+  box-shadow: inset;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+}
+.event-info {
+  font-family: 'Alfa Slab One';
+  color: #742929;
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.event-description {
+  font-family: 'Alfa Slab One';
+  color: #742929;
+  font-size: 24px;
+  margin: 10px 0;
+}
+.map-style{
+  width: 100%;
+  border-radius: 5px;
+  justify-content: center;
+  max-width: 1200px;
   height: auto;
   aspect-ratio: 5 / 1;
   object-fit: cover; /* Coupe l'image pour qu'elle remplisse bien l'espace */
   display: block;
   margin: 0 auto;
+  opacity: 0.5;
+}
+.button-event{
+  padding: 13px;
+  font-family: arial;
+  font-size: 1em;
+  color: #eeece1;
+  background-color: #6b1d1d;
+  border-radius: 5px;
+  border: 1px solid #2b0d0d;
+  box-shadow: 5px 3px 8px #0c0c0c;
+  opacity: 0.8;
+  margin: 50px;
+  margin-left: auto;
 }
