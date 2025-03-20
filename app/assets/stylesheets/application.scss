@@ -16,10 +16,14 @@
 }
 
 body {
-  background-color: black;
+  background-color: rgb(201, 152, 152);
   // background-image: url('https://images2.imgbox.com/60/d6/ffXXQDIz_o.jpeg');
   // background-size: 100%;
   // background-repeat: no-repeat;
+}
+a{
+  text-decoration: none !important;
+  color: inherit;
 }
 
 /* Navbar principale */
