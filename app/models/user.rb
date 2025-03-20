@@ -13,4 +13,6 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
 
   delegate :first_name, :last_name, :mood, :hobbie, to: :profile
+  geocoded_by :address
+  after_validation :geocode, if: ->(user) { user.address_changed? }
 end
