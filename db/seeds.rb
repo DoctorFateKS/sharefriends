@@ -38,29 +38,46 @@ users = []
   users << user
 end
 
-# Create events
+event_data = [
+  { title: "Concert Jazz & Soul", address: "New Morning, 7-9 Rue des Petites Écuries, 75010 Paris" },
+  { title: "Conférence Tech & IA", address: "Station F, 5 Parvis Alan Turing, 75013 Paris" },
+  { title: "Exposition d’Art Contemporain", address: "Centre Pompidou, Place Georges-Pompidou, 75004 Paris" },
+  { title: "Atelier Cuisine Française", address: "L'Atelier des Chefs, 10 Rue de Penthièvre, 75008 Paris" },
+  { title: "Soirée Stand-Up Comedy", address: "Paname Art Café, 14 Rue de la Fontaine au Roi, 75011 Paris" },
+  { title: "Dégustation de Vins & Fromages", address: "Ô Chateau, 68 Rue Jean-Jacques Rousseau, 75001 Paris" },
+  { title: "Balade Historique dans le Marais", address: "Place des Vosges, 75004 Paris" },
+  { title: "Yoga au Jardin du Luxembourg", address: "Jardin du Luxembourg, 75006 Paris" },
+  { title: "Hackathon Startups", address: "Espace WeWork, 33 Rue la Fayette, 75009 Paris" },
+  { title: "Projection Film Indépendant", address: "Le Grand Rex, 1 Boulevard Poissonnière, 75002 Paris" }
+]
+
+# Création des événements pour chaque utilisateur
 events = []
-# Pour chaque user, on crée 3 events
+
 users.each do |user|
   3.times do |i|
+    data = event_data.sample
     event = Event.create!(
       user: user,
-      title: "titre de l'event #{i+1}",
+      title: data[:title],
       description: Faker::Lorem.paragraph,
-      address: Faker::Address.street_address,
-      date: Faker::Time.forward(days: 30, period: :evening),
+      address: data[:address],
+      date: Faker::Time.forward(days: rand(10..60), period: :evening),
       mood: ["Fêtard", "Créatif", "L'explorateur", "Zen/Posé"].sample,
       status: ["pending", "accepted", "rejected"].sample,
       max_participants: rand(5..20),
-      activity: Faker::Sport.sport,
+      activity: ["Concert", "Conférence", "Exposition", "Atelier", "Spectacle", "Dégustation", "Balade", "Yoga", "Hackathon", "Projection"].sample,
       latitude: Faker::Address.latitude,
       longitude: Faker::Address.longitude
     )
+
     events << event
-    # On crée un chatroom pour chaque event
+
+    # Création d'une chatroom pour chaque événement
     Chatroom.create!(event: event)
   end
-  # On crée 5 participations pour chaque user
+
+  # Création de 5 participations aléatoires par utilisateur
   events.sample(5).each do |event|
     Participation.create!(
       user: user,
