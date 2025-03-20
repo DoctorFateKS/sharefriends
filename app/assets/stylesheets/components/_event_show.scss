@@ -1,0 +1,25 @@
+.container {
+  margin-top: 150px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.form-group{
+color: antiquewhite;
+}
+.event {
+  position: relative;
+  text-align: left;
+  margin-top: 20px;
+}
+.event-image {
+  width: 100%;
+  border-radius: 5px;
+  justify-content: center;
+  max-width: 1200px; 
+  height: auto;
+  aspect-ratio: 5 / 1;
+  object-fit: cover; /* Coupe l'image pour qu'elle remplisse bien l'espace */
+  display: block;
+  margin: 0 auto;
+}
