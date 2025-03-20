@@ -1,7 +1,8 @@
+
 <body>
   <div class="container-show">
     <section class="event">
-    <img src="https://static.actu.fr/uploads/2017/07/2D9A3772.jpg-Visionneuse-de-photos-Windows-960x640.jpg" alt="Ambiance de l'événement" class="event-image">
+      <%= cl_image_tag @event.photo.key, height: 300, width: 400, crop: :fill %> alt="Ambiance de l'événement" class="event-image">
     <div class="event-info">
         <h1><%= @event.title %></h1>
         <p> <%= @event.address %></p>
@@ -13,6 +14,7 @@
         <% if user_signed_in? %>
           <% participation = current_user.participations.find_by(event: @event) %>
 
+
           <% if participation.blank? %>
             <%= button_to "Participer", event_participations_path(@event), method: :post, class: "btn button-event" %>
           <% elsif participation.accepted? %>
@@ -22,7 +24,8 @@
           <% end %>
         <% end %>
 
-      <div class="map-style"
+
+     <div class="map-style"
       <%# style="width: 25%; height: 300px;" %>
         data-controller="map"
         data-map-markers-value="<%= @markers.to_json %>"

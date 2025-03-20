@@ -1,4 +1,4 @@
-<%= image_tag "logo.png", height: 30, width: 30, alt: "Logo" %>
+<%cl_image_tag @event.photo.key, height: 300, width: 400, crop: :fill %>
 <div class="badge rounded-pill bg-primary fs-6">
   <%= event.title %>
 </div>

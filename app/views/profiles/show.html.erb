@@ -1,4 +1,8 @@
 <h1>Mon Profil</h1>
+<% if @profile.photo.attached? %>
+<%= cl_image_tag @profile.photo.key, height: 200, width: 200, crop: :fill %>
+<% end %>
+
 
 <div class="profile-container">
   <div class="profile-info">

@@ -2,6 +2,8 @@
 
 <%= form_with model: @profile, local: true do |form| %>
 
+<%= form.file_field :photo%>
+
   <div class="form-group">
     <%= form.label :first_name, "Prénom" %>
     <%= form.text_field :first_name, class: "form-control" %>
