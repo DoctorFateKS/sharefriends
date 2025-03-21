@@ -11,9 +11,9 @@
           <% @participations.each do |event| %>
             <div class="dashboard-card" style="background-image: url('<%= cl_image_path(event.photo.key) %>')">
               <h3><%= event.title %></h3>
-              <p>📍 <%= event.address %></p>
-              <p>🕒 <%= event.date.strftime("%d/%m/%Y %H:%M") %></p>
-              <p>👥 Participants max : <%= event.max_participants %></p>
+              <p> <%= event.address %></p>
+              <p> <%= event.date.strftime("%d/%m/%Y %H:%M") %></p>
+              <p> Participants max : <%= event.max_participants %></p>
 
               <div class="event-actions">
                 <%= link_to "Voir l'événement", event_path(event), class: "btn button-dashboard" %>
@@ -29,20 +29,22 @@
         <p>Tu n'as pas encore d'événements confirmés. Inscris-toi à un événement et commence l'aventure !</p>
         <%= link_to "Explorer les événements", authenticated_root_path, class: "btn btn-success" %>
       <% end %>
-
-      <h2>💬 Mes Chatrooms</h2>
-
-      <% if @chatrooms.any? %>
-        <ul class="chatroom-list">
-          <% @chatrooms.each do |chatroom| %>
-            <li>
-              <%= link_to "💬 Discussion : #{chatroom.event.title}", event_chatroom_path(chatroom.event, chatroom), class: "chatroom-link" %>
-            </li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p>Aucune discussion en cours. Rejoins un événement pour discuter avec les autres participants !</p>
-      <% end %>
+      <div class="container-tchat">
+        <h2> Messages </h2>
+        <% if @chatrooms.any? %>
+          <ul class="chatroom-list">
+            <% @chatrooms.each do |chatroom| %>
+            <div class="tchat-link">
+              <li>
+                <%= link_to "#{chatroom.event.title}", event_chatroom_path(chatroom.event, chatroom), class: "chatroom-link" %>
+              </li>
+            </div>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>Aucune discussion en cours. Rejoins un événement pour discuter avec les autres participants !</p>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
