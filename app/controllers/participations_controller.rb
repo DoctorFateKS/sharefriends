@@ -36,4 +36,3 @@ class ParticipationsController < ApplicationController
     @participation = Participation.find(params[:id])
   end
 end
-end
