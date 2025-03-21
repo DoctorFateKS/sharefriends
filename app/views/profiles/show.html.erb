@@ -1,12 +1,12 @@
 <div class="container-show">
   <h1>Mon Profil</h1>
   <% if @profile.photo.attached? %>
-  <%= cl_image_tag @profile.photo.key, height: 200, width: 200, crop: :fill %>
+  <%= cl_image_tag @profile.photo.key, height: 200, width: 200, crop: :fill, class: "user-photo" %>
   <% end %>
 
 
   <div class="profile-container">
-    <div class="profile-info">
+    <div class="profile-description">
       <p><strong>Prénom :</strong> <%= @profile.first_name %></p>
       <p><strong>Nom :</strong> <%= @profile.last_name %></p>
       <p><strong>Mood actuel :</strong> <%= @profile.mood %></p>
@@ -19,7 +19,7 @@
       </ul>
     </div>
 
-    <%= link_to "🛠 Modifier mon profil", edit_profile_path(@profile), class: "btn btn-primary" %>
-    <%= link_to "⬅ Retour", dashboard_path, class: "btn btn-secondary" %>
+    <%= link_to "🛠 Modifier mon profil", edit_profile_path(@profile), class: "btn button" %>
+    <%= link_to "⬅ Retour", dashboard_path, class: "btn button" %>
   </div>
 </div>
