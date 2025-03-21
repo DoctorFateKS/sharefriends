@@ -43,3 +43,25 @@
   border-radius: 10px;
   position: relative;
 }
+.container-tchat{
+  margin-top: 150px;
+  margin-bottom: 150px;
+  display: flow;
+  background-color: rgba(224, 224, 223, 0.3);
+
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+  overflow: auto;
+}
+.tchat-link{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 50px;
+  margin-right: 50px ;
+  display: flow;
+  background-color: rgb(229, 230, 221);
+
+  border-radius: 5px;
+  box-shadow: 2px 2px 7px rgba(255, 255, 255, 0.5);
+  overflow: auto;
+}

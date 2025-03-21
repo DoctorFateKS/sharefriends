@@ -17,7 +17,11 @@
           <!-- Dropdown Menu Profil -->
           <div class="dropdown">
             <button class="button-navbar dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <% if current_user.profile && current_user.profile.photo.attached?%>
               <%= cl_image_tag current_user.profile.photo.key, class:"avatar" %>
+            <% else %>
+              <%= image_tag "https://res.cloudinary.com/dhixxvne7/image/upload/v1742486543/image_ztdqac.jpg", width: "40px", height: "40px" %>
+            <% end %>
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
               <li>
