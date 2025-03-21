@@ -1,6 +1,6 @@
 .navbar-lewagon{
   justify-content: space-between;
-  background: rgba(211, 206, 206, 0.0);
+  background: rgba(250, 246, 246, 0);
   border-radius: 5px;
   align-items: center;
   padding: 15px 50px;
@@ -15,7 +15,7 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 125px;
+  width: 200px;
 }
 .nav-item{
   color: antiquewhite;
@@ -30,5 +30,20 @@
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
   margin-right: 10px;
-  z-index: 0;
+}
+.avatar{
+  border-radius: 50%;
+}
+
+.button-navbar{
+  background-color: rgb(204, 176, 176);
+  border-color:rgb(204, 176, 176);
+  border: none;
+}
+.dropdown-item{
+  font-family: 'Alfa Slab One';
+  color: #742929;
+}
+.dropdown-menu{
+  background-color: rgb(204, 176, 176);
 }
