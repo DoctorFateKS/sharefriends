@@ -12,25 +12,25 @@
       <div class="filters-container">
         <div class="checkbox-map">
           <div class="checkbox-row">
-            <input type="checkbox" id="fetard" name="fetard"/>
-            <label for="fetard" class="checkbox-label">Fêtard</label>
-            <input type="checkbox" id="creatif" name="creatif"/>
-            <label for="creatif" class="checkbox-label">Créatif</label>
-            <input type="checkbox" id="explorateur" name="explorateur"/>
-            <label for="explorateur" class="checkbox-label">Explorateur</label>
-            <input type="checkbox" id="zen" name="zen"/>
-            <label for="zen" class="checkbox-label">Zen/Posé</label>
+            <input type="checkbox" id="Fêtard" name="Fêtard" <%="checked" if @user_moods=="Fêtard"%>/>
+            <label for="Fêtard" class="checkbox-label">Fêtard</label>
+            <input type="checkbox" id="Créatif" name="Créatif"<%="checked" if @user_moods=="Créatif"%>/>
+            <label for="Créatif" class="checkbox-label">Créatif</label>
+            <input type="checkbox" id="Explorateur" name="Explorateur"<%="checked" if @user_moods=="Explorateur"%>/>
+            <label for="Explorateur" class="checkbox-label">Explorateur</label>
+            <input type="checkbox" id="Zen" name="Zen"<%="checked" if @user_moods=="Zen"%>/>
+            <label for="Zen" class="checkbox-label">Zen/Posé</label>
           </div>
 
           <div class="checkbox-row">
-            <input type="checkbox" id="geek" name="geek"/>
-            <label for="geek" class="checkbox-label">Geek/Créatif</label>
-            <input type="checkbox" id="sport" name="sport"/>
-            <label for="sport" class="checkbox-label">Sport/Découverte</label>
-            <input type="checkbox" id="nourriture" name="nourriture"/>
-            <label for="nourriture" class="checkbox-label">Nourriture/Partage</label>
-            <input type="checkbox" id="chill" name="chill"/>
-            <label for="chill" class="checkbox-label">Chill/Cosy</label>
+            <input type="checkbox" id="Geek-Créatif" name="Geek-Créatif"<%="checked" if @user_hobbies.include?("Geek-Créatif")%>/>
+            <label for="Geek-Créatif" class="checkbox-label">Geek-Créatif</label>
+            <input type="checkbox" id="Sport-Aventure" name="Sport-Aventure"<%="checked" if @user_hobbies.include?("Sport-Aventure")%>/>
+            <label for="Sport-Aventure" class="checkbox-label">Sport-Aventure</label>
+            <input type="checkbox" id="Food-Partage" name="Food-Partage"<%="checked" if @user_hobbies.include?("Food-Partage")%>/>
+            <label for="Food-Partage" class="checkbox-label">Food-Partage</label>
+            <input type="checkbox" id="Chill-Cosy" name="Chill-Cosy"<%="checked" if @user_hobbies.include?("Chill-Cosy")%>/>
+            <label for="Chill-Cosy" class="checkbox-label">Chill-Cosy</label>
           </div>
         </div>
 
