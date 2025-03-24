@@ -15,20 +15,18 @@
           </div>
 
           <!-- Dropdown Menu Profil -->
-          <div class="dropdown" data-controller="dropdown">
-            <button class="button-navbar dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-action="click->dropdown#show" aria-expanded="false">
-            <% if current_user.profile && current_user.profile.photo.attached?%>
-              <%= cl_image_tag current_user.profile.photo.key, class:"avatar" %>
-            <% else %>
-              <%= image_tag "https://res.cloudinary.com/dhixxvne7/image/upload/v1742486543/image_ztdqac.jpg", width: "40px", height: "40px" %>
-            <% end %>
+          <div class="dropdown">
+            <button class="dropdown-toggle">
+              <% if current_user.profile && current_user.profile.photo.attached? %>
+                <%= cl_image_tag current_user.profile.photo.key, class:"avatar" %>
+              <% else %>
+                <%= image_tag "https://res.cloudinary.com/dhixxvne7/image/upload/v1742486543/image_ztdqac.jpg", class: "avatar" %>
+              <% end %>
             </button>
-            <ul class="dropdown-menu dropdown-menu-end" data-dropdown-target="ul" aria-labelledby="dropdownMenuButton">
-              <li>
-                <% if current_user && current_user.profile.present? %>
-                <%= link_to "Mon Profil", profile_path(current_user.profile), class: "dropdown-item" %>
-                <% end %>
-              </li>
+            <ul class="dropdown-menu">
+              <% if current_user && current_user.profile.present? %>
+                <li><%= link_to "Mon Profil", profile_path(current_user.profile), class: "dropdown-item" %></li>
+              <% end %>
               <li>
                 <%= link_to dashboard_path, class: "dropdown-item" do %>
                   Dashboard
@@ -37,7 +35,7 @@
                   <% end %>
                 <% end %>
               </li>
-              <li><hr class="dropdown-divider"></li>
+              <li><hr></li>
               <li>
                 <%= link_to "Se Déconnecter", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Es-tu sûr de vouloir te déconnecter ?" }, class: "dropdown-item" %>
               </li>
