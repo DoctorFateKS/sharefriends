@@ -7,7 +7,7 @@
   <fieldset class="form-group">
     <legend>Quel est ton mood du moment ? 😃</legend>
     <div class="mood-options">
-      <% ["Fêtard", "Créatif", "Explorateur", "Zen, posé"].each do |mood| %>
+      <% ["Fêtard", "Créatif", "Explorateur", "Zen"].each do |mood| %>
         <label class="mood-radio">
           <%= f.radio_button :mood, mood, checked: @profile.mood == mood %>
           <%= mood %>

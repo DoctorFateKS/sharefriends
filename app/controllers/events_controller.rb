@@ -4,6 +4,8 @@ class EventsController < ApplicationController
 
   def index
     redirect_to new_profile_path if current_user && current_user.profile.nil?
+    @user_moods= current_user.mood
+    @user_hobbies=current_user.hobbie.split(",")
     if params[:query].present?
       sql_query = "title ILIKE :query OR address ILIKE :query"
       @events = Event.where(sql_query, query: "%#{params[:query]}%")
