@@ -1,3 +1,43 @@
 .container {
   margin-top: 150px;
 }
+.checkbox-row {
+  display: flex;
+  gap: 15px;
+}
+
+/* Cacher les cases à cocher réelles */
+.checkbox-map input[type="checkbox"] {
+  display: none; /* Masquer les cases à cocher */
+}
+
+/* Style des labels */
+.checkbox-map .checkbox-label {
+  display: block;
+  padding: 5px;
+  background-color: #ffffffa1;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+/* Changer la couleur du label quand la case est cochée */
+.checkbox-map input[type="checkbox"]:checked + .checkbox-label {
+  background-color: #742929;
+  color: white;
+}
+
+/* Option hover pour les labels */
+.checkbox-map .checkbox-label:hover {
+  background-color: #FFF;
+}
+
+.form-group{
+  margin: 35px;
+}

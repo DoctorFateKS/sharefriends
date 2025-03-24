@@ -33,6 +33,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
+    @event.mood = current_user.mood
     if @event.save
       redirect_to @event, notice: "Événement créé!"
     else
