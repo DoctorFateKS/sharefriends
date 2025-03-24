@@ -6,5 +6,37 @@
   font-family: 'Alfa Slab One';
   color: rgb(116, 41, 41);
   font-size: 24px;
-  margin: 10px 0;
+  margin: 100px 250px 150px 150px;
+}
+.titre-profil{
+color: rgb(116, 41, 41);
+font-family: 'Alfa Slab One';
+margin: 50px;
+}
+.container-show{
+  margin-top: 70px;
+  justify-content: center;
+  align-items: center;
+  display: flow;
+  background-color: rgba(224, 224, 223, 0.3);
+  margin: 200px 100px 150px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+
+}
+.user-photo{
+  margin: 10px 60px 10px;
+}
+.button-show{
+  padding: 13px;
+  color: #fff;
+  background-color: #6b1d1d;
+  font-family: 'Alfa Slab One';
+  border-radius: 5px;
+  margin: 100px 0px 100px; padding: 13px;
+  font-family: arial;
+  font-size: 1em;
+  color: #eeece1;
+  border: 1px solid #2b0d0d;
+  box-shadow: 5px 3px 8px #0c0c0c;
 }

@@ -1,5 +1,5 @@
 <div class="container-show">
-  <h1>Mon Profil</h1>
+  <h1 class="titre-profil">Mon Profil</h1>
   <% if @profile.photo.attached? %>
   <%= cl_image_tag @profile.photo.key, height: 200, width: 200, crop: :fill, class: "user-photo" %>
   <% end %>
@@ -11,18 +11,20 @@
       <p><strong>Nom :</strong> <%= @profile.last_name %></p>
       <p><strong>Mood actuel :</strong> <%= @profile.mood %></p>
 
-      <p><strong>Centres d'intérêt :</strong></p>
-      <% if @profile.hobbies.any? %>
-        <ul class="hobbie-list">
-          <% @profile.hobbies.each do |hobbie| %>
-            <li><%= hobbie %></li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p>Aucun centre d'intérêt renseigné.</p>
-      <% end %>
-
-    <%= link_to "🛠 Modifier mon profil", edit_profile_path(@profile), class: "btn button" %>
-    <%= link_to "⬅ Retour", dashboard_path, class: "btn button" %>
+        <p><strong>Centres d'intérêt :</strong></p>
+        <% if @profile.hobbies.any? %>
+          <ul class="hobbie-list">
+            <% @profile.hobbies.each do |hobbie| %>
+              <li><%= hobbie %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>Aucun centre d'intérêt renseigné.</p>
+        <% end %>
+      <%= link_to " Modifier mon profil", edit_profile_path(@profile), class: "btn button-show" %>
+    </div>
   </div>
+  <div class="event-return-button-show">
+      <%= link_to "⬅ Retour", dashboard_path, class: "event-return" %>
+    </div>
 </div>
