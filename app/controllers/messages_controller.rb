@@ -9,9 +9,9 @@ class MessagesController < ApplicationController
     message.chatroom = @chatroom
 
     if message.save
-      redirect_to event_chatroom_path(@chatroom.event)
+      redirect_to event_chatroom_path(@chatroom.event.id, @chatroom.id)
     else
-      redirect_to event_chatroom_path(@chatroom.event), alert: "Erreur d'envoi !"
+      redirect_to event_chatroom_path(@chatroom.event.id, @chatroom.id), alert: "Erreur d'envoi !"
     end
   end
 
@@ -32,4 +32,3 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:content)
   end
 end
-
