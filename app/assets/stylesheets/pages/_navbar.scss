@@ -21,16 +21,23 @@
   color: antiquewhite;
 }
 
-.nav-link{
-  font-family: 'Alfa Slab One';
+.nav-link {
+  font-family: 'Oswald';
   font-size: 20px;
   line-height: 100%;
-  letter-spacing: 0%;
-  color: #C8B6B6;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black;
+  letter-spacing: 1px;
+  color: #FFF;
   margin-right: 10px;
+  background: #000;
+  padding: 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
 }
+
+.nav-link:hover {
+  color: #693333;
+}
+
 .avatar{
   border-radius: 50%;
 }

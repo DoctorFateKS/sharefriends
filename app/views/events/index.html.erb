@@ -1,22 +1,72 @@
-<div class="container-search">
-  <%= form_tag events_path, class: "form d-flex", method: :get do %>
-    <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Trouve un event" %>
-    <%= submit_tag "Rechercher", class: "btn button " %>
-  <% end %>
-</div>
-
-<div class="events-grid">
-  <% @events.each do |event| %>
-    <%= link_to event_path(event), class: "event-card-link" do %>
-      <div class="event-card">
-      <%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fill %>
-        <h3><%= event.title %></h3>
-        <p>📍 <%= event.address %></p>
-        <p>🕒 <%= event.date.strftime("%d/%m/%Y %H:%M") %></p>
-        <p>👥 Participants max : <%= event.max_participants %></p>
-        <% if user_signed_in? && current_user == event.user %>
+<div class="index-container" data-controller="map-toggle">
+  <div class="flex">
+    <div class="events-grid" data-map-toggle-target="grid">
+      <div class="container-search" data-map-toggle-target="search">
+        <%= form_tag events_path, class: "form d-flex", method: :get do %>
+          <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Trouve un event" %>
+          <%= button_tag type: "submit", class: "btn button" do %>
+            <i class="fa fa-search"></i>
+          <% end %>
         <% end %>
       </div>
-    <% end %>
-  <% end %>
+      <div class="filters-container">
+        <div class="checkbox-map">
+          <div class="checkbox-row">
+            <input type="checkbox" id="fetard" name="fetard"/>
+            <label for="fetard" class="checkbox-label">Fêtard</label>
+            <input type="checkbox" id="creatif" name="creatif"/>
+            <label for="creatif" class="checkbox-label">Créatif</label>
+            <input type="checkbox" id="explorateur" name="explorateur"/>
+            <label for="explorateur" class="checkbox-label">Explorateur</label>
+            <input type="checkbox" id="zen" name="zen"/>
+            <label for="zen" class="checkbox-label">Zen/Posé</label>
+          </div>
+
+          <div class="checkbox-row">
+            <input type="checkbox" id="geek" name="geek"/>
+            <label for="geek" class="checkbox-label">Geek/Créatif</label>
+            <input type="checkbox" id="sport" name="sport"/>
+            <label for="sport" class="checkbox-label">Sport/Découverte</label>
+            <input type="checkbox" id="nourriture" name="nourriture"/>
+            <label for="nourriture" class="checkbox-label">Nourriture/Partage</label>
+            <input type="checkbox" id="chill" name="chill"/>
+            <label for="chill" class="checkbox-label">Chill/Cosy</label>
+          </div>
+        </div>
+
+        <div class="switch-map">
+          <p class="show-map">Afficher Carte</p>
+          <label class="switch">
+            <input type="checkbox" id="toggle-map" data-action="change->map-toggle#toggleMap">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+
+      <% @events.each do |event| %>
+        <%= link_to event_path(event), class: "event-card-link" do %>
+          <div class="event-card">
+            <%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fill %>
+            <h3><%= event.title %></h3>
+            <div class="txt_card">
+              <p><i class="fa-solid fa-location-dot"></i> <%= event.address %></p>
+              <p><i class="fa-solid fa-calendar-days"></i> <i><%= event.date.strftime("%d/%m/%Y %H:%M") %></i></p>
+              <p><i class="fa-solid fa-users"></i> Participants max : <b><%= event.max_participants %></b></p>
+              <% if user_signed_in? && current_user == event.user %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="map-container" data-map-toggle-target="map">
+      <div class="map-index"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+
+  </div>
 </div>
