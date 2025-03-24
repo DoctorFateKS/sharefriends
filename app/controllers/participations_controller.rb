@@ -4,10 +4,11 @@ class ParticipationsController < ApplicationController
 
   def create
     participation = Participation.new(user: current_user, event_id: params[:event_id], status: "pending")
-    if participation.save
+    if participation.event.participations.count < participation.event.max_participants
+      participation.save
       redirect_to event_path(params[:event_id]), notice: "Demande envoyée!"
     else
-      redirect_to event_path(params[:event_id]), alert: "Erreur lors de l'inscription!"
+      redirect_to event_path(params[:event_id]), alert: "Erreur lors de l'inscription! Evènement complet."
     end
   end
 
