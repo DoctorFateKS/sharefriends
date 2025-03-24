@@ -1,8 +1,16 @@
+.index-container {
+  margin: 220px 10px 10px 10px;
+}
+
+.flex {
+  display: flex;
+  gap: 20px;
+}
+
 .container-search {
-  margin-top: 250px;
   justify-content: center;
   align-items: center;
-  display: flex;
+  grid-column: span 1; // mettre span 2 si carte
 }
 
 .events .form-control {
@@ -11,47 +19,123 @@
 
 .events-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr; // mettre 1 fr 1fr si carte
+  gap: 40px;
   padding: 20px;
   margin-top: 50px;
-
 }
 
 .event-card {
-  display: flex;
-  flex-direction: column;
   background: white;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
   text-decoration: none;
+  height: 470px;
+  position: relative;
 }
 
 .event-card:hover {
   transform: translateY(-5px);
 }
 
+.event-card img {
+  width: 100%;
+  filter: grayscale(1);
+}
+
+.event-card img:hover {
+  filter: grayscale(0);
+  transition: all 1s ease-out;;
+}
+
+.event-card h3 {
+  position: absolute;
+  bottom: 146px;
+  background: black;
+  color: white;
+  font-size: 22px;
+  width: fit-content;
+  padding: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: oswald;
+}
+
 /* Image */
 .event-image img {
-  width: 100%;
   height: 180px;
   object-fit: cover;
 }
 
 /* Contenu */
-.event-content {
-  padding: 15px;
+
+.txt_card {
+  padding: 10px;
+  line-height: 15px;
+  margin-top: 15px;
+}
+.filters-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+  grid-column: span 2;
+  margin-top: -30px;
+}
+
+.checkbox-map {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkbox-row {
+  display: flex;
+  gap: 15px;
+}
+
+/* Cacher les cases à cocher réelles */
+.checkbox-map input[type="checkbox"] {
+  display: none; /* Masquer les cases à cocher */
+}
+
+/* Style des labels */
+.checkbox-map .checkbox-label {
+  display: block;
+  padding: 5px;
+  background-color: #ffffffa1;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+/* Changer la couleur du label quand la case est cochée */
+.checkbox-map input[type="checkbox"]:checked + .checkbox-label {
+  background-color: #742929;
+  color: white;
+}
+
+/* Option hover pour les labels */
+.checkbox-map .checkbox-label:hover {
+  background-color: #FFF;
+}
+
+.switch-map {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
 }
 
 /* Titre */
-.event-title {
-  color: #eeeeee;
-  text-decoration: none;
-  font-size: 20px;
-  font-weight: bold;
-}
 
 /* Actions */
 .event-actions {
@@ -60,27 +144,24 @@
   margin-top: 10px;
 }
 
-/* Boutons */
-// .btn {
-//   padding: 8px 12px;
-//   border-radius: 5px;
-//   font-size: 14px;
-//   text-decoration: none;
-// }
+.map-container {
+  display: none;
+}
 
-// .btn-info {
-//   background: #17a2b8;
-//   color: white;
-// }
+.map-index {
+  height: 100vh;
+  width: 600px;
+  margin-top: 70px;
+  position: sticky;
+  top: 0;
+  border-radius: 12px;
+  transition: transform 0.2s ease-in-out;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
 
-// .btn-danger {
-//   background: #dc3545;
-//   color: white;
-// }
-
-// .btn:hover {
-//   opacity: 0.8;
-// }
+.map-index:hover {
+  transform: translateY(-5px);
+}
 
 .button{
   padding: 13px;
@@ -92,4 +173,76 @@
   border: 1px solid #595959;
   box-shadow: 5px 3px 8px #0c0c0c;
 
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-left: 20px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.show-map {
+  margin-top: 20px;
+  font-family: 'Oswald';
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #742929;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #742929;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
