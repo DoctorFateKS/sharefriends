@@ -1,0 +1,67 @@
+
+.container-dashboard{
+  margin-top: 70px;
+  justify-content: center;
+  align-items: center;
+  display: flow;
+  background-color: rgba(224, 224, 223, 0.3);
+  margin: 200px 100px 150px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+  overflow: auto;
+}
+.button-dashboard{
+  padding: 13px;
+  font-family: arial;
+  font-size: 1em;
+  color: #eeece1;
+  background-color: #6b1d1d;
+  border-radius: 5px;
+  border: 1px solid #2b0d0d;
+  box-shadow: 5px 3px 8px #0c0c0c;
+  opacity: 0.8;
+  margin: 50px;
+  margin-left: auto;
+  font-family: 'Alfa Slab One';
+}
+.dashboard-text{
+  font-family: 'Alfa Slab One';
+  color: #742929;
+  font-size: 24px;
+  margin: 10px 0;
+}
+.dashboard-card {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+}
+.container-tchat{
+  margin-top: 150px;
+  margin-bottom: 150px;
+  display: flow;
+  background-color: rgba(224, 224, 223, 0.3);
+
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+  overflow: auto;
+}
+.tchat-link{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 50px;
+  margin-right: 50px ;
+  display: flow;
+  background-color: rgb(229, 230, 221);
+
+  border-radius: 5px;
+  box-shadow: 2px 2px 7px rgba(255, 255, 255, 0.5);
+  overflow: auto;
+}

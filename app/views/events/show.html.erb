@@ -1,38 +1,38 @@
-
-<body>
-  <div class="container-show">
-    <section class="event">
-      <%= cl_image_tag @event.photo.key, class:"event-image" %>
-    <div class="event-info">
-        <h1><%= @event.title %></h1>
-        <p> <%= @event.address %></p>
-        <p> <%= @event.date.strftime("%d/%m/%Y %H:%M") %></p>
-        <p class="event-description"> <%= @event.description %></p>
-        <p class="mood"> <%= @event.mood %></p>
-        <p> <%= @event.activity %></p>
-        <p> <strong>Max Participants :</strong> <%= @event.max_participants %></p>
-        <% if user_signed_in? %>
-          <% participation = current_user.participations.find_by(event: @event) %>
-
-
-          <% if participation.blank? %>
-            <%= button_to "Participer", event_participations_path(@event), method: :post, class: "btn button-event" %>
-          <% elsif participation.accepted? %>
-            <%= link_to "💬 Rejoindre le Chat", event_chatroom_path(@event), class: "btn btn-primary" %>
-          <% else %>
-            <p>⏳ En attente de validation...</p>
-          <% end %>
-        <% end %>
+<div class="container-show">
+  <div class="event">
+    <%= cl_image_tag @event.photo.key, class:"event-image" %>
+    <h1><%= @event.title %></h1>
+  </div>
+  <div class="event-info">
+    <p> <i class="fa-solid fa-location-dot"></i> <%= @event.address %></p>
+    <p> <i class="fa-solid fa-calendar-days"></i> <i><%= @event.date.strftime("%d/%m/%Y %H:%M") %></i></p>
+    <p class="event-description"> <%= @event.description %></p>
+    <div class="mood">
+      <p> <%= @event.mood %></p>
+      <p> <%= @event.activity %></p>
+    </div>
+    <p class="inside-card"> <strong>Max Participants :</strong> <%= @event.max_participants %></p>
+    <% if user_signed_in? %>
+      <% participation = current_user.participations.find_by(event: @event) %>
 
 
-     <div class="map-style"
-      <%# style="width: 25%; height: 300px;" %>
-        data-controller="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
+      <% if participation.blank? %>
+        <%= button_to "Participer", event_participations_path(@event), method: :post, class: "btn button-event" %>
+      <% elsif participation.accepted? %>
+        <%= link_to "Rejoindre le Chat", event_chatroom_path(@event), class: "btn button-event" %>
+      <% else %>
+        <p class="waiting-card"> En attente de validation...</p>
+      <% end %>
+    <% end %>
 
-      <%= link_to "⬅ Retour aux événements", events_path %>
+
+    <div class="map-style"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   </div>
-</body>
+  <div class="event-return-button">
+    <%= link_to "⬅ Retour aux événements", events_path, class: "event-return" %>
+  </div>
+</div>

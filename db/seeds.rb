@@ -28,13 +28,16 @@ users = []
     password: "password"
   )
   # Creation d'un profile pour chaque user avec des informations aléatoires
-  Profile.create!(
+  profile = Profile.create!(
     user: user,
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     mood: ["Fêtard", "Créatif", "L'explorateur", "Zen/Posé"].sample,
     hobbie: ["Geek/Créatif", "Sport/Découverte", "Food/Partage", "Chill/Cosy"].sample
   )
+  file = URI.parse("https://res.cloudinary.com/dhixxvne7/image/upload/v1742486543/image_ztdqac.jpg").open
+  profile.photo.attach(io: file, filename: "profile.jpg", content_type: "image/jpeg")
+  profile.save
   users << user
 end
 
