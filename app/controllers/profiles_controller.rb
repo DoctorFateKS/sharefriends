@@ -12,9 +12,11 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     @profile.user = current_user
-    @profile.hobbie = params[:profile][:hobbies].reject { |hobbie| hobbie == "0" }.join(", ")
+    if params[:profile][:hobbies]
+      @profile.hobbie = params[:profile][:hobbies].split("\n").reject(&:blank?).join(',')
+    end
 
-    if @profile.save!
+    if @profile.save
       redirect_to authenticated_root_path, notice: "Profil créé avec succès !"
     else
       render :new
@@ -25,8 +27,12 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    if @profile.update!(profile_params)
-      redirect_to profile_path, notice: "Profil mis à jour !"
+    @profile = Profile.find(params[:id])
+    if params[:profile][:hobbies]
+      @profile.hobbie = params[:profile][:hobbies].split("\n").reject(&:blank?).join(',')
+    end
+    if @profile.update(profile_params)
+      redirect_to @profile, notice: "Profil mis à jour"
     else
       render :edit
     end
@@ -39,6 +45,6 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:first_name, :last_name, :mood, :hobbie, :photo)
+    params.require(:profile).permit(:first_name, :last_name, :mood, :photo)
   end
 end
