@@ -11,7 +11,7 @@
       <p> <%= @event.mood %></p>
       <p> <%= @event.activity %></p>
     </div>
-    <p class="inside-card"> <strong>Max Participants :</strong> <%= @event.max_participants %></p>
+    <p class="inside-card"> <strong> Participants :</strong> <%= @event.participations.count %> / <%= @event.max_participants %></p>
     <% if user_signed_in? %>
       <% participation = current_user.participations.find_by(event: @event) %>
 
