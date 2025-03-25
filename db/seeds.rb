@@ -1,15 +1,4 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-
-require 'faker'
-Faker::Config.locale = 'fr'
+require "open-uri"
 
 # Clear all data
 Message.destroy_all
@@ -19,96 +8,30 @@ Event.destroy_all
 Profile.destroy_all
 User.destroy_all
 
-# Creation de 10 users aléatoire
-users = []
-10.times do |i|
-  # Creation d'un user avec un email unique et un mot de passe "password"
-  user = User.create!(
-    email: "sharefriends#{i+1}@example.com",
-    password: "password"
-  )
-  # Creation d'un profile pour chaque user avec des informations aléatoires
-  profile = Profile.create!(
-    user: user,
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    mood: ["Fêtard", "Créatif", "L'explorateur", "Zen/Posé"].sample,
-    hobbie: ["Geek/Créatif", "Sport/Découverte", "Food/Partage", "Chill/Cosy"].sample
-  )
-  file = URI.parse("https://res.cloudinary.com/dhixxvne7/image/upload/v1742486543/image_ztdqac.jpg").open
-  profile.photo.attach(io: file, filename: "profile.jpg", content_type: "image/jpeg")
-  profile.save
-  users << user
-end
+# Creation des users
 
-event_data = [
-  { title: "Concert Jazz & Soul", address: "New Morning, 7-9 Rue des Petites Écuries, 75010 Paris"},
-  { title: "Conférence Tech & IA", address: "Station F, 5 Parvis Alan Turing, 75013 Paris"},
-  { title: "Exposition d’Art Contemporain", address: "Centre Pompidou, Place Georges-Pompidou, 75004 Paris" },
-  { title: "Atelier Cuisine Française", address: "L'Atelier des Chefs, 10 Rue de Penthièvre, 75008 Paris" },
-  { title: "Soirée Stand-Up Comedy", address: "Paname Art Café, 14 Rue de la Fontaine au Roi, 75011 Paris" },
-  { title: "Dégustation de Vins & Fromages", address: "Ô Chateau, 68 Rue Jean-Jacques Rousseau, 75001 Paris" },
-  { title: "Balade Historique dans le Marais", address: "Place des Vosges, 75004 Paris" },
-  { title: "Yoga au Jardin du Luxembourg", address: "Jardin du Luxembourg, 75006 Paris" },
-  { title: "Hackathon Startups", address: "Espace WeWork, 33 Rue la Fayette, 75009 Paris" },
-  { title: "Projection Film Indépendant", address: "Le Grand Rex, 1 Boulevard Poissonnière, 75002 Paris" }
-]
+user1 = User.create!(email: "laureline@lewagon.com", password: "password")
+user2 = User.create!(email: "baptiste@lewagon.com", password: "password")
+user3 = User.create!(email: "kevin@lewagon.com", password: "password")
 
-# Création des événements pour chaque utilisateur
-events = []
+# Creation des profils de chaque user
 
-users.each do |user|
-  3.times do |i|
-    data = event_data.sample
-    event = Event.create!(
-      user: user,
-      title: data[:title],
-      description: Faker::Lorem.paragraph,
-      address: data[:address],
-      date: Faker::Time.forward(days: rand(10..60), period: :evening),
-      mood: ["Fêtard", "Créatif", "L'explorateur", "Zen/Posé"].sample,
-      status: ["pending", "accepted", "rejected"].sample,
-      max_participants: rand(5..20),
-      activity: ["Concert", "Conférence", "Exposition", "Atelier", "Spectacle", "Dégustation", "Balade", "Yoga", "Hackathon", "Projection"].sample,
-      latitude: Faker::Address.latitude,
-      longitude: Faker::Address.longitude
-    )
-    file = URI.parse("https://res.cloudinary.com/dhixxvne7/image/upload/v1742479415/240F306887089uWap0Lt9MBANoFTG4vrzqJytQW6RqFSajpg_6489afbf59a0a_z1oyy0.jpg").open
-    event.photo.attach(io: file, filename: "event.jpg", content_type: "image/jpeg")
-    event.save
-    events << event
+profile1 = Profile.create!(user: user1, first_name: "Laureline", last_name: "Desplanches", mood: "Fêtard", hobbie: "Sport-Aventure")
+file1 = URI.parse('https://ca.slack-edge.com/T02NE0241-U089PLMCNA0-83fbccce4ffa-512').open
+profile1.photo.attach(io: file1, filename: 'profile1.jpg', content_type: 'image/jpeg')
+user1.save
 
-    # Création d'une chatroom pour chaque événement
-    Chatroom.create!(event: event)
-  end
+profile2 = Profile.create!(user: user2, first_name: "Baptiste", last_name: "Casagrande", mood: "Créatif", hobbie: "Chill-Cosy")
+file2 = URI.parse('https://ca.slack-edge.com/T02NE0241-U089HB880CV-086ce835c602-512').open
+profile2.photo.attach(io: file2, filename: 'profile2.jpg', content_type: 'image/jpeg')
+user2.save
 
-  # Création de 5 participations aléatoires par utilisateur
-  events.sample(5).each do |event|
-    Participation.create!(
-      user: user,
-      event: event,
-      status: ["pending", "accepted", "rejected"].sample
-    )
-  end
-end
-
-# Create messages
-Chatroom.find_each do |chatroom|
-  # Pour chaque chatroom, on crée entre 5 et 15 messages
-  rand(5..15).times do
-    Message.create!(
-      user: users.sample,
-      chatroom: chatroom,
-      content: Faker::Lorem.sentence
-    )
-  end
-end
+profile3 = Profile.create!(user: user3, first_name: "Kevin", last_name: "Saison", mood: "Explorateur", hobbie: "Food-Partage")
+file3 = URI.parse('https://ca.slack-edge.com/T02NE0241-U08AA2SGX24-e56e23ebdf92-512').open
+profile3.photo.attach(io: file3, filename: 'profile3.jpg', content_type: 'image/jpeg')
+user3.save
 
 puts "Users: #{User.count}"
 puts "Profiles: #{Profile.count}"
-puts "Events: #{Event.count}"
-puts "Chatrooms: #{Chatroom.count}"
-puts "Participations: #{Participation.count}"
-puts "Messages: #{Message.count}"
 
 puts "Seeding complete!"
