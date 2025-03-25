@@ -1,25 +1,72 @@
-
 <div class="body-dashboard background">
-  <div class="container-dashboard ">
+  <div class="container-dashboard">
     <div class="dashboard-text">
-      <%= link_to " Créer un Événement", new_event_path, class: "btn button-dashboard" if user_signed_in? %>
+
+      <%= link_to "Créer un Événement", new_event_path, class: "btn button-dashboard" if user_signed_in? %>
+
+      <h2>Mes Événements Créés</h2>
+      <% if @created_events.any? %>
+        <ul>
+          <% @created_events.each do |event| %>
+            <li>
+              <%= link_to event.title, event_path(event) %>
+              <%= link_to "🗑 Supprimer", event_path(event), method: :delete,
+                          data: { confirm: "Supprimer cet événement ?" }, class: "btn btn-danger" %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>Tu n'as pas encore créé d'événement.</p>
+      <% end %>
+
+      <h2>Mes Participations - En attente</h2>
+      <% if @pending_events.any? %>
+        <ul>
+          <% @pending_events.each do |event| %>
+            <li>
+              <%= link_to event.title, event_path(event) %> - En attente de confirmation
+              <%= link_to "Annuler", event_participation_path(event, event.participations.find_by(user: current_user)),
+                          method: :delete,
+                          data: { confirm: "Annuler ta participation ?" },
+                          class: "btn btn-warning" %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>Aucune participation en attente.</p>
+      <% end %>
+
+      <h2>Mes Participations - Confirmées</h2>
+      <% if @accepted_events.any? %>
+        <ul>
+          <% @accepted_events.each do |event| %>
+            <li>
+              <%= link_to event.title, event_path(event) %> - Participation confirmée
+              <%= link_to "Annuler", event_participation_path(event, event.participations.find_by(user: current_user)),
+                          method: :delete,
+                          data: { confirm: "Annuler ta participation ?" },
+                          class: "btn btn-warning" %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>Aucune participation confirmée.</p>
+      <% end %>
 
       <h2>Mes Événements Confirmés</h2>
-
       <% if @participations.any? %>
         <div class="events-grid">
           <% @participations.each do |event| %>
             <div class="dashboard-card" style="background-image: url('<%= cl_image_path(event.photo.key) %>')">
               <h3><%= event.title %></h3>
-              <p> <%= event.address %></p>
-              <p> <%= event.date.strftime("%d/%m/%Y %H:%M") %></p>
-              <p> Participants max : <%= event.max_participants %></p>
+              <p><%= event.address %></p>
+              <p><%= event.date.strftime("%d/%m/%Y %H:%M") %></p>
+              <p>Participants max : <%= event.max_participants %></p>
 
               <div class="event-actions">
                 <%= link_to "Voir l'événement", event_path(event), class: "btn button-dashboard" %>
-                <% chatroom = event.chatroom %>
-                <% if chatroom %>
-                  <%= link_to " Rejoindre le chat", event_chatroom_path(event, chatroom), class: "btn button-dashboard" %>
+                <% if event.chatroom %>
+                  <%= link_to "Rejoindre le chat", event_chatroom_path(event, event.chatroom), class: "btn button-dashboard" %>
                 <% end %>
               </div>
             </div>
@@ -29,22 +76,22 @@
         <p>Tu n'as pas encore d'événements confirmés. Inscris-toi à un événement et commence l'aventure !</p>
         <%= link_to "Explorer les événements", authenticated_root_path, class: "btn button-dashboard" %>
       <% end %>
+
       <div class="container-tchat">
-        <h2> Messages </h2>
+        <h2>Messages</h2>
         <% if @chatrooms.any? %>
           <ul class="chatroom-list">
             <% @chatrooms.each do |chatroom| %>
-            <div class="tchat-link">
-              <li>
-                <%= link_to "#{chatroom.event.title}", event_chatroom_path(chatroom.event, chatroom), class: "chatroom-link" %>
+              <li class="tchat-link">
+                <%= link_to chatroom.event.title, event_chatroom_path(chatroom.event, chatroom), class: "chatroom-link" %>
               </li>
-            </div>
             <% end %>
           </ul>
         <% else %>
           <p>Aucune discussion en cours. Rejoins un événement pour discuter avec les autres participants !</p>
         <% end %>
       </div>
+
     </div>
   </div>
 </div>
