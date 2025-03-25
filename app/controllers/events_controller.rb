@@ -2,21 +2,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
-  # def index
-  #   redirect_to new_profile_path if current_user && current_user.profile.nil?
-  #   @user_moods= current_user.mood
-  #   @user_hobbies=current_user.hobbie.split(",")
-  #   if params[:query].present?
-  #     sql_query = "title ILIKE :query OR address ILIKE :query"
-  #     @events = Event.where(sql_query, query: "%#{params[:query]}%")
-  #   else
-  #     @events = Event.all
-  #   end
-  #   # result = request.location
-  #   # raise
-
-  # end
-
+  
   def index
     if current_user && current_user.profile.nil?
       redirect_to new_profile_path and return
