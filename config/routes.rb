@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     end
     root "events#index", as: :authenticated_root
   end
+  patch "participations/:id", to: "participations#accepted", as: :accept_participation
+  patch "participations/:id", to: "participations#rejected", as: :reject_participation
 
   root "pages#home"
 end

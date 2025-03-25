@@ -21,6 +21,12 @@ class EventsController < ApplicationController
 
 
   def show
+    if @event.user == current_user
+    @pending_participations = @event.participations.select{|participation|participation.status == "pending"}
+    @accepted_participations = @event.participations.select{|participation|participation.status == "accepted"}
+    @rejected_participations = @event.participations.select{|participation|participation.status == "rejected"}
+    end
+
     @markers =[{
       lat: @event.latitude,
       lng: @event.longitude,

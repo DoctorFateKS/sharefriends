@@ -44,36 +44,39 @@
       </div>
 
       <% @events.each do |event| %>
-        <%= link_to event_path(event), class: "event-card-link" do %>
-          <div class="event-card">
-            <div class= "logo-container">
-              <%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fill %>
-              <div class="event-badges mood-logo">
-                <% case event.user.mood %>
-                <% when "Fêtard" %>
-                  <i class="fa-solid fa-fire"></i>
-                <% when "Créatif" %>
-                  <i class="fa-solid fa-palette"></i>
-                <% when "Explorateur" %>
-                  <i class="fa-regular fa-compass"></i>
-                <% when "Zen" %>
-                  <i class="fa-solid fa-leaf"></i>
-                <% else %>
-                  <%= event.user.mood %> <!-- fallback au texte si mood inconnu -->
+        <% unless current_user == event.user %>
+          <%= link_to event_path(event), class: "event-card-link" do %>
+            <div class="event-card">
+              <div class= "logo-container">
+                <%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fill %>
+                <div class="event-badges mood-logo">
+                  <% case event.user.mood %>
+                  <% when "Fêtard" %>
+                    <i class="fa-solid fa-fire"></i>
+                  <% when "Créatif" %>
+                    <i class="fa-solid fa-palette"></i>
+                  <% when "Explorateur" %>
+                    <i class="fa-regular fa-compass"></i>
+                  <% when "Zen" %>
+                    <i class="fa-solid fa-leaf"></i>
+                  <% else %>
+                    <%= event.user.mood %> <!-- fallback au texte si mood inconnu -->
+                  <% end %>
+                </div>
+              </div>
+              <h3><%= event.title %></h3>
+              <div class="txt_card">
+                <p><i class="fa-solid fa-location-dot"></i> <%= event.address %></p>
+                <p><i class="fa-solid fa-calendar-days"></i> <i><%= event.date.strftime("%d/%m/%Y %H:%M") %></i></p>
+                <p><i class="fa-solid fa-users"></i> Participants max : <b><%= event.max_participants %></b></p>
+                <% if user_signed_in? && current_user == event.user %>
                 <% end %>
               </div>
             </div>
-            <h3><%= event.title %></h3>
-            <div class="txt_card">
-              <p><i class="fa-solid fa-location-dot"></i> <%= event.address %></p>
-              <p><i class="fa-solid fa-calendar-days"></i> <i><%= event.date.strftime("%d/%m/%Y %H:%M") %></i></p>
-              <p><i class="fa-solid fa-users"></i> Participants max : <b><%= event.max_participants %></b></p>
-              <% if user_signed_in? && current_user == event.user %>
-              <% end %>
-            </div>
-          </div>
+          <% end %>
         <% end %>
       <% end %>
+
     </div>
 
     <div class="map-container" data-map-toggle-target="map">

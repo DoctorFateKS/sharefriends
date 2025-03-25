@@ -14,16 +14,52 @@
     <p class="inside-card"> <strong> Participants :</strong> <%= @event.participations.count %> / <%= @event.max_participants %></p>
     <% if user_signed_in? %>
       <% participation = current_user.participations.find_by(event: @event) %>
-
-
       <% if participation.blank? %>
-        <%= button_to "Participer", event_participations_path(@event), method: :post, class: "btn button-event" %>
+        <%= button_to "Participer", event_participations_path(@event), method: :post, class: "btn button-event" unless current_user == @event.user %>
       <% elsif participation.accepted? %>
         <%= link_to "Rejoindre le Chat", event_chatroom_path(@event), class: "btn button-event" %>
       <% else %>
         <p class="waiting-card"> En attente de validation...</p>
       <% end %>
     <% end %>
+    <% if current_user == @event.user %>
+      <% if @pending_participations %>
+        <h2>Ils veulent participer à ton événement :</h2>
+        <ul>
+          <% @pending_participations.each do |participation| %>
+            <li style="display: flex; align-items: center; gap: 10px;">
+              <%= link_to accept_participation_path(participation), data: { turbo_method: :patch } do %>
+                <div class="btn btn-primary">Valider</div>
+              <% end %>
+              <%= link_to reject_participation_path(participation), data: { turbo_method: :patch } do %>
+                <div class="btn btn-warning">Refuser</div>
+              <% end %>
+              <%= link_to profile_path(participation.user), class: "btn btn-outline-secondary", title: "Voir le profil" do %>
+                <%= cl_image_tag participation.user.profile.photo.key, class: "avatar"%>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>Aucune participation.</p>
+      <% end %>
+    <% end %>
+
+ <% if @accepted_participations %>
+  <h2>Ils participent à ton événement :</h2>
+  <ul>
+    <% @accepted_participations.each do |participation| %>
+      <li>
+        <%= link_to profile_path(participation.user), class: "btn btn-outline-secondary", title: "Voir le profil" do %>
+          <%= cl_image_tag participation.user.profile.photo.key, class: "avatar"%>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Aucune participation.</p>
+<% end %>
+
 
 
     <div class="map-style"
