@@ -22,6 +22,19 @@ class ParticipationsController < ApplicationController
     end
   end
 
+  def accepted
+    @participation = Participation.find(params[:id])
+    @participation.update(status: "accepted")
+    redirect_to event_path(@participation.event), notice: "Demande validée!"
+  end
+
+  def rejected
+    @participation = Participation.find(params[:id])
+    @participation.update(status: "rejected")
+    redirect_to event_path(@participation.event), notice: "Demande refusée!"
+  end
+
+
   def destroy
     if current_user == @participation.user
       @participation.destroy

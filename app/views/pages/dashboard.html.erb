@@ -36,7 +36,7 @@
         <p>Aucune participation en attente.</p>
       <% end %>
 
-      <h2>Mes Participations - Confirmées</h2>
+      <h2>Mes événements à venir</h2>
       <% if @accepted_events.any? %>
         <ul>
           <% @accepted_events.each do |event| %>
@@ -50,31 +50,7 @@
           <% end %>
         </ul>
       <% else %>
-        <p>Aucune participation confirmée.</p>
-      <% end %>
-
-      <h2>Mes Événements Confirmés</h2>
-      <% if @participations.any? %>
-        <div class="events-grid">
-          <% @participations.each do |event| %>
-            <div class="dashboard-card" style="background-image: url('<%= cl_image_path(event.photo.key) %>')">
-              <h3><%= event.title %></h3>
-              <p><%= event.address %></p>
-              <p><%= event.date.strftime("%d/%m/%Y %H:%M") %></p>
-              <p>Participants max : <%= event.max_participants %></p>
-
-              <div class="event-actions">
-                <%= link_to "Voir l'événement", event_path(event), class: "btn button-dashboard" %>
-                <% if event.chatroom %>
-                  <%= link_to "Rejoindre le chat", event_chatroom_path(event, event.chatroom), class: "btn button-dashboard" %>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% else %>
-        <p>Tu n'as pas encore d'événements confirmés. Inscris-toi à un événement et commence l'aventure !</p>
-        <%= link_to "Explorer les événements", authenticated_root_path, class: "btn button-dashboard" %>
+        <p>Aucun événement à venir.</p>
       <% end %>
 
       <div class="container-tchat">
