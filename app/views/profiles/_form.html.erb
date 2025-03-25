@@ -1,32 +1,32 @@
-<%= simple_form_for @profile, html: { multipart: true } do |f| %>
-  <%= f.input :photo, as: :file, label: "Ta photo" %>
+ <%= simple_form_for @profile, html: { multipart: true } do |f| %>
+    <%= f.input :photo, as: :file, label: "Ta photo" %>
 
-  <%= f.input :first_name, label: "Prénom", input_html: { placeholder: "Ton prénom" } %>
-  <%= f.input :last_name, label: "Nom", input_html: { placeholder: "Ton nom" } %>
+    <%= f.input :first_name, label: "Prénom", input_html: { placeholder: "Ton prénom" } %>
+    <%= f.input :last_name, label: "Nom", input_html: { placeholder: "Ton nom" } %>
 
-  <fieldset class="form-group">
-    <legend>Quel est ton mood du moment ? 😃</legend>
-    <div class="mood-options">
-      <% ["Fêtard", "Créatif", "Explorateur", "Zen"].each do |mood| %>
-        <label class="mood-radio">
-          <%= f.radio_button :mood, mood, checked: @profile.mood == mood %>
-          <%= mood %>
-        </label>
-      <% end %>
-    </div>
-  </fieldset>
+    <fieldset class="form-group">
+      <legend>Quel est ton mood du moment ? </legend>
+      <div class="mood-options">
+        <% ["Fêtard", "Créatif", "Explorateur", "Zen"].each do |mood| %>
+          <label class="mood-radio">
+            <%= f.radio_button :mood, mood, checked: @profile.mood == mood %>
+            <%= mood %>
+          </label>
+        <% end %>
+      </div>
+    </fieldset>
 
-  <fieldset class="form-group">
-    <legend>Centres d’intérêt (min 1, max 4)</legend>
-    <div class="hobbie-options">
-      <% ["Geek-Créatif", "Sport-Aventure", "Food-Partage", "Chill-Cosy"].each do |hobby| %>
-        <label class="hobbie-checkbox">
-          <%= check_box_tag "profile[hobbies][]", hobby, @profile.hobbie&.include?(hobby) %>
-          <%= hobby %>
-        </label>
-      <% end %>
-    </div>
-  </fieldset>
+    <fieldset class="form-group">
+      <legend>Centres d’intérêt (min 1, max 4)</legend>
+      <div class="hobbie-options">
+        <% ["Geek-Créatif", "Sport-Aventure", "Food-Partage", "Chill-Cosy"].each do |hobby| %>
+          <label class="hobbie-checkbox">
+            <%= check_box_tag "profile[hobbies][]", hobby, @profile.hobbie&.include?(hobby) %>
+            <%= hobby %>
+          </label>
+        <% end %>
+      </div>
+    </fieldset>
 
-  <%= f.button :submit, class: "btn btn-success btn-block" %>
-<% end %>
+    <%= f.button :submit, class: "btn button-show" %>
+  <% end %>
