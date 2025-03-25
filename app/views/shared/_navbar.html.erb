@@ -29,7 +29,7 @@
               <% end %>
               <li>
                 <%= link_to dashboard_path, class: "dropdown-item" do %>
-                  Dashboard
+                  Tableau de bord
                   <% if current_user.accepted_events.any? %>
                     <span class="badge"><%= current_user.accepted_events.count %></span>
                   <% end %>

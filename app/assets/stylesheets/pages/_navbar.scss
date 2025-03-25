@@ -61,8 +61,8 @@
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
 }
 
@@ -70,12 +70,13 @@
   display: none;
   position: absolute;
   right: 0;
-  background-color: white;
+  background-color: rgb(204, 176, 177);
   min-width: 150px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   padding: 10px 0;
   list-style: none;
+
 }
 
 .dropdown:hover .dropdown-menu {
@@ -86,20 +87,25 @@
   padding: 10px;
   text-decoration: none;
   display: block;
-  color: black;
+  color: rgb(235, 224, 224);
+  font-family: 'Alfa Slab One';
 }
 
 .dropdown-item:hover {
-  background-color: #f0f0f0;
+  background-color: rgba(100, 31, 34,0.4);
 }
 
 .badge {
-  background-color: red;
+  background-color: rgb(128, 87, 87);
   color: white;
   border-radius: 50%;
   padding: 3px 6px;
   font-size: 12px;
   margin-left: 5px;
+
+}
+.dropdown{
+  background-color: rgb(204, 176, 177);
 }
 
 .container-fluid {

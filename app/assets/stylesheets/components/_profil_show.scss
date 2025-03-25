@@ -1,15 +1,18 @@
 .user-photo{
   border-radius: 50%;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  height: 250px;
+  width: 250px;
+  margin: 5px 40px 10px;
 }
 .profile-description {
   font-family: 'Alfa Slab One';
   color: rgb(116, 41, 41);
   font-size: 24px;
-  margin: 100px 250px 150px 150px;
+ margin-left: 30px;
 }
 .titre-profil{
-color: rgb(116, 41, 41);
+color: rgb(224, 210, 210);
 font-family: 'Alfa Slab One';
 margin: 50px;
 }
@@ -24,9 +27,6 @@ margin: 50px;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
 
 }
-.user-photo{
-  margin: 10px 60px 10px;
-}
 .button-show{
   padding: 13px;
   color: #fff;
@@ -40,3 +40,79 @@ margin: 50px;
   border: 1px solid #2b0d0d;
   box-shadow: 5px 3px 8px #0c0c0c;
 }
+.color-block{
+background: linear-gradient(120deg, #693333, #F8C7C7);
+}
+
+.switch-hobbie {
+	display: inline-block;
+	position: relative;
+	width: 70px;
+	height: 40px;
+	cursor: pointer;
+	overflow: hidden;
+}
+.switch-hobbie input {
+	position: absolute;
+	top: -30px;
+	left: -30px;
+	width: 0;
+	height: 0;
+}
+
+.switch-hobbie input + span {
+  position: absolute;
+ top: 0;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ background: #e2d8e2;
+ border-radius: 20px;
+}
+
+.switch-hobbie input:checked + span {
+	background: #572525;
+}
+.switch-hobbie input + span:before {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 4px;
+	width: 32px;
+	height: 32px;
+	background: white;
+	border-radius: 50%;
+	transform: translateY(-50%);
+	transition: all .5s;
+}
+.switch-hobbie input:checked + span:before {
+	left: 34px;
+}
+
+.block1{
+  padding-top: 20px;
+  padding-left: 20px;
+  display: inline-grid;
+}
+.block2{
+  padding-top: 20px;
+  padding-left: 20px;
+
+}
+.fond-block1{
+  display: inline-grid;
+}
+.fond-block2{display: inline-grid;
+}
+.devise-login-block1{
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 12px;
+  margin: 50px 100px 100px 200px;
+  backdrop-filter: blur(20px);
+  outline-offset: 3px;
+  outline: 1px solid #743e3f;
+  padding-right: 0;
+  padding-left: 0;
+}
+
