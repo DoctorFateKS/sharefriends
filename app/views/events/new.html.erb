@@ -18,9 +18,10 @@
 
 
     <div class="form-group">
-      <%= form.label :address, "Où ça?" %>
-      <%= form.text_field :address, class: "form-control" %>
-    </div>
+  <%= form.label :address, "Où ça?" %>
+  <%= form.text_field :address, class: "form-control", data: { controller: "address-autocomplete", action: "input->address-autocomplete#search", address_autocomplete_target: "input" } %>
+</div>
+
 
     <div class="form-group">
       <%= form.label :mood, "Le Mood de mon événement:" %>
@@ -42,7 +43,7 @@
         <label for="Food-Partage" class="checkbox-label">Food-Partage</label>
 
         <input type="checkbox" id="Chill-Cosy" name="hobby-type" />
-        <label for="Chill-Cosy" class="checkbox-label">Chill-Cosy/Posé</label>
+        <label for="Chill-Cosy" class="checkbox-label">Chill-Cosy</label>
       </div>
     </div>
     </fieldset>
