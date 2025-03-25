@@ -26,42 +26,27 @@
     <div class="form-group">
       <%= form.label :mood, "Le Mood de mon événement:" %>
       <%= form.text_field :mood, class: "form-control", placeholder: current_user.mood, disabled: true %>
-      <p class="badge badge-light">Tu peux modifier ton mood via ton profil</p>
+      <p class="text-white">Tu peux modifier ton mood via ton profil</p>
     </div>
 
     <fieldset>
-    <div class="checkbox-map form-group">
-    <%=form.label :hobbie, "Le type de hobby de ton événement ?"%>
-      <div class="checkbox-row">
-        <input type="checkbox" id="Geek-Créatif" name="hobby-type" />
-        <label for="Geek-Créatif" class="checkbox-label">Geek-Créatif</label>
+  <div class="radio-map form-group">
+    <%= form.label :activity, "Le type de hobby de ton événement ?" %>
+    <div class="radio-row">
+      <input type="radio" id="Geek-Créatif" name="activity" value="Geek-Créatif" />
+      <label for="Geek-Créatif" class="radio-label">Geek-Créatif</label>
 
-        <input type="checkbox" id="Sport-Aventure" name="hobby-type" />
-        <label for="Sport-Aventure" class="checkbox-label">Sport-Aventure</label>
+      <input type="radio" id="Sport-Aventure" name="activity" value="Sport-Aventure" />
+      <label for="Sport-Aventure" class="radio-label">Sport-Aventure</label>
 
-        <input type="checkbox" id="Food-Partage" name="hobby-type" />
-        <label for="Food-Partage" class="checkbox-label">Food-Partage</label>
+      <input type="radio" id="Food-Partage" name="activity" value="Food-Partage" />
+      <label for="Food-Partage" class="radio-label">Food-Partage</label>
 
-        <input type="checkbox" id="Chill-Cosy" name="hobby-type" />
-        <label for="Chill-Cosy" class="checkbox-label">Chill-Cosy</label>
-      </div>
+      <input type="radio" id="Chill-Cosy" name="activity" value="Chill-Cosy" />
+      <label for="Chill-Cosy" class="radio-label">Chill-Cosy</label>
     </div>
-    </fieldset>
-
-    <script>
-    const checkboxes = document.querySelectorAll('input[type="checkbox"][name="hobby-type"]');
-
-    checkboxes.forEach((checkbox) => {
-      checkbox.addEventListener('change', () => {
-        if (checkbox.checked) {
-          checkboxes.forEach((other) => {
-            if (other !== checkbox) other.checked = false;
-          });
-        }
-      });
-    });
-    </script>
-
+  </div>
+</fieldset>
 
 
    <div class="form-group">

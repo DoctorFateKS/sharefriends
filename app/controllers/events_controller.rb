@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
-  
+
   def index
     if current_user && current_user.profile.nil?
       redirect_to new_profile_path and return
@@ -35,9 +35,10 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.activity = params[:activity]
     @event.user = current_user
     @event.mood = current_user.mood
-    if @event.save
+    if @event.save!
       redirect_to @event, notice: "Événement créé!"
     else
       render :new
