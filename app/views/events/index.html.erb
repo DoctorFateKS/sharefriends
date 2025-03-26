@@ -49,7 +49,7 @@
             <div class="event-card">
               <div class= "logo-container">
                 <%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fill %>
-                <div class="event-badges mood-logo">
+                <div class="event-badges mood-logo" title="<%= event.user.mood %>">
                   <% case event.user.mood %>
                   <% when "Fêtard" %>
                     <i class="fa-solid fa-fire"></i>
@@ -60,7 +60,7 @@
                   <% when "Zen" %>
                     <i class="fa-solid fa-leaf"></i>
                   <% else %>
-                    <%= event.user.mood %> <!-- fallback au texte si mood inconnu -->
+                    <%= event.user.mood %>
                   <% end %>
                 </div>
               </div>
