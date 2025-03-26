@@ -1,4 +1,4 @@
-<div class="container-show">
+<div class="chatroom-profile-container color-block">
   <h1>Discussion pour l'événement: <%= @chatroom.event.title %></h1>
 
   <div>
@@ -14,18 +14,18 @@
     <% end %>
   </div>
 
-  <h2>Envoyer un message</h2>
+  <h2 class="h2-chatroom">Envoyer un message</h2>
   <%= form_with model: @message, url: event_chatroom_messages_path(@chatroom.event, @chatroom), local: true do |form| %>
     <div>
       <%= form.text_area :content %>
     </div>
 
     <div>
-      <%= form.submit "Envoyer" %>
+      <%= form.submit "Envoyer", class: "button-chatroom" %>
     </div>
   <% end %>
-<div class="event-return-button-show">
+      <div class="event-return-button-show">
           <%= link_to "⬅ Retour", dashboard_path, class: "event-return" %>
       </div>
-  <%= link_to "Retour", dashboard_path %>
+
 </div>
