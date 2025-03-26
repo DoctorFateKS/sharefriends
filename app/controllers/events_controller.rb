@@ -45,6 +45,9 @@ class EventsController < ApplicationController
     @event.user = current_user
     @event.mood = current_user.mood
     if @event.save!
+      @chatroom = Chatroom.create(event: @event)
+      @participation = Participation.new(user: current_user, event_id: @event.id, status: "accepted")
+      @participation.save!
       redirect_to @event, notice: "Événement créé!"
     else
       render :new

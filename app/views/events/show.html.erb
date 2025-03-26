@@ -11,11 +11,16 @@
       <p> <%= @event.mood %></p>
       <p> <%= @event.activity %></p>
     </div>
-    <p class="inside-card"> <strong> Participants :</strong> <%= @event.participations.count %> / <%= @event.max_participants %></p>
+
+    <p class="inside-card"> <strong> Participants :</strong> <%= @event.participations.where(status:"accepted").count %> / <%= @event.max_participants %></p>
     <% if user_signed_in? %>
       <% participation = current_user.participations.find_by(event: @event) %>
       <% if participation.blank? %>
+        <% if @event.participations.where(status:"accepted").count == @event.max_participants %>
+        <%= button_to "Evénement complet", event_participations_path(@event), method: :post, :disabled => true, class: "btn button-event" unless current_user == @event.user %>
+        <% else %>
         <%= button_to "Participer", event_participations_path(@event), method: :post, class: "btn button-event" unless current_user == @event.user %>
+        <% end %>
       <% elsif participation.accepted? %>
         <%= link_to "Rejoindre le Chat", event_chatroom_path(@event), class: "btn button-event" %>
       <% else %>
@@ -56,8 +61,6 @@
       </li>
     <% end %>
   </ul>
-<% else %>
-  <p>Aucune participation.</p>
 <% end %>
 
 
