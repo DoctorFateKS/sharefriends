@@ -3,8 +3,10 @@ class ParticipationsController < ApplicationController
   before_action :set_participation, only: [:update, :destroy]
 
   def create
+    @event = Event.find(params[:event_id])
+    @participations = @event.participations
     participation = Participation.new(user: current_user, event_id: params[:event_id], status: "pending")
-    if participation.event.participations.count < participation.event.max_participants
+    if @participations.where(status:"accepted").count < participation.event.max_participants
       participation.save
       redirect_to event_path(params[:event_id]), notice: "Demande envoyée!"
     else

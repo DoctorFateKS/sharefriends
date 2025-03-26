@@ -20,7 +20,7 @@ class ChatroomsController < ApplicationController
 
   def authorize_participant
     participation = current_user.participations.find_by(event_id: params[:event_id])
-    unless participation&.accepted?
+    unless participation&.accepted? || current_user == @chatroom.event.user
       redirect_to events_path, alert: "Vous devez être accepté à l'événement pour accéder à la discussion."
     end
   end
