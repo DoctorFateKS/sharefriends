@@ -7,30 +7,24 @@
 
   <div class="profile-container">
     <div class="profile-description">
-      <div class="row justify-content-center row-devise ">
+      <div class="show-content-center row-devise ">
         <div class="col-12 col-lg-8 devise-form-login block">
           <p><strong>Prénom :</strong> <%= @profile.first_name %></p>
           <p><strong>Nom :</strong> <%= @profile.last_name %></p>
         </div>
         </div>
-        <div class="row justify-content-center row-devise fond-block1">
+        <div class="show-content-center row-devise fond-block1">
           <div class="col-12 col-lg-8 devise-form-login block1">
             <p><strong>Mood actuel :</strong> <%= @profile.mood %></p>
           </div>
         </div>
-        <div class="row justify-content-center row-devise fond-block2">
+        <div class="row show-content-center row-devise fond-block2">
           <div class="col-12 col-lg-8 devise-form-login block2">
             <p><strong>Centres d'intérêt :</strong></p>
             <% if @profile.hobbies.any? %>
               <ul class="hobbie-list">
                 <% ["Geek-Créatif", "Sport-Aventure", "Food-Partage", "Chill-Cosy"].each do |hobbie| %>
-                <!--hobbie.include? "Geek/creatif"-->
-                <%# <% if hobbie == "Geek-Créatif"  %>
-                  <li><%= hobbie %>
-                  <label class="switch-hobbie">
-                  <input type="checkbox" />
-                  <span></span>
-                </label></li>
+                  <li><%= hobbie %><%="selectionner" if @profile.hobbies.include?(hobbie) %></li>
                 <% end %>
 
               </ul>
