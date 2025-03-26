@@ -1,4 +1,4 @@
- <%= simple_form_for @profile, html: { multipart: true } do |f| %>
+<%= simple_form_for @profile, html: { multipart: true } do |f| %>
     <%= f.input :photo, as: :file, label: "Ta photo" %>
 
     <%= f.input :first_name, label: "Prénom", input_html: { placeholder: "Ton prénom" } %>
@@ -27,6 +27,9 @@
         <% end %>
       </div>
     </fieldset>
-
-    <%= f.button :submit, class: "btn button-show" %>
+    <% if  params[:action] == "edit" %>
+      <%= f.button :submit, "Modifier mon profil", class: "btn button-event" %>
+     <% else %>
+      <%= f.button :submit, "Créer mon profil", class: "btn button-event" %>
+    <% end %>
   <% end %>

@@ -1,7 +1,10 @@
-<div class="container-show">
-  <h1> Modifier mon Profil</h1>
+<div class="new-profile-container color-block">
+ <h1 class="titre-profil">Modification</h1>
 
   <%= render 'form' %>
 
-  <%= link_to "⬅ Retour", profile_path, class: "btn button" %>
+
+  <div class="event-return-button-show">
+      <%= link_to "⬅ Retour", profile_path, class: "event-return" %>
+  </div>
 </div>

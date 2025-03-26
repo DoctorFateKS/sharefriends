@@ -1,8 +1,8 @@
 
-<div class="container">
+<div class="new-profile-container color-block">
   <%= form_with model: @event, local: true do |form| %>
     <div class="form-group">
-      <%= form.label :title, "Quel êvènement, activité proposes-tu?" %>
+      <%= form.label :title, "Quel évènement, activité proposes-tu?" %>
       <%= form.text_field :title, class: "form-control" %>
     </div>
 
@@ -56,8 +56,9 @@
 
     <%= form.file_field :photo%>
 
-    <%= form.submit "Créer l'événement", class: "btn btn-success" %>
+    <%= form.submit "Créer l'événement", class: "btn button-event" %>
   <% end %>
-
-  <%= link_to "⬅ Retour", events_path, class: "btn btn-secondary" %>
+  <div class="event-return-button-show">
+      <%= link_to "⬅ Retour", events_path, class: "event-return" %>
+  </div>
 </div>
