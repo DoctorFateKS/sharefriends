@@ -5,19 +5,40 @@
       <%= link_to "Créer un Événement", new_event_path, class: "btn button-dashboard" if user_signed_in? %>
 
       <h2>Mes Événements Créés</h2>
-      <% if @created_events.any? %>
-        <ul>
-          <% @created_events.each do |event| %>
-            <li>
-              <%= link_to event.title, event_path(event) %>
-              <%= link_to "🗑 Supprimer", event_path(event), method: :delete,
-                          data: { confirm: "Supprimer cet événement ?" }, class: "btn btn-danger" %>
-            </li>
+
+<% @created_events.each do |event| %>
+  <%= link_to event_path(event), class: "event-card-link" do %>
+    <div class="event-card">
+      <div class="logo-container">
+        <%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fill %>
+        <div class="event-badges mood-logo" title="<%= event.user.mood %>">
+          <% case event.user.mood %>
+          <% when "Fêtard" %>
+            <i class="fa-solid fa-fire"></i>
+          <% when "Créatif" %>
+            <i class="fa-solid fa-palette"></i>
+          <% when "Explorateur" %>
+            <i class="fa-regular fa-compass"></i>
+          <% when "Zen" %>
+            <i class="fa-solid fa-leaf"></i>
+          <% else %>
+            <%= event.user.mood %>
           <% end %>
-        </ul>
-      <% else %>
-        <p>Tu n'as pas encore créé d'événement.</p>
-      <% end %>
+        </div>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><%= event.title %></h5>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="text-center mt-2">
+    <%= link_to "🗑 Supprimer", event_path(event), method: :delete,
+                data: { confirm: "Supprimer cet événement ?" },
+                class: "btn btn-danger" %>
+  </div>
+<% end %>
+
 
       <h2>Mes Participations - En attente</h2>
       <% if @pending_events.any? %>
@@ -36,38 +57,85 @@
         <p>Aucune participation en attente.</p>
       <% end %>
 
-      <h2>Mes événements à venir</h2>
-      <% if @accepted_events.any? %>
-        <ul>
-          <% @accepted_events.each do |event| %>
-            <li>
-              <%= link_to event.title, event_path(event) %> - Participation confirmée
-              <%= link_to "Annuler", event_participation_path(event, event.participations.find_by(user: current_user)),
-                          method: :delete,
-                          data: { confirm: "Annuler ta participation ?" },
-                          class: "btn btn-warning" %>
-            </li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p>Aucun événement à venir.</p>
+ <h2>Mes événements à venir</h2>
+
+<% if @accepted_events.any? %>
+  <div class="event-card-list">
+    <% @accepted_events.each do |event| %>
+      <%= link_to event_path(event), class: "event-card-link" do %>
+        <div class="event-card">
+          <div class="logo-container">
+            <%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fill %>
+            <div class="event-badges mood-logo" title="<%= event.user.mood %>">
+              <% case event.user.mood %>
+              <% when "Fêtard" %>
+                <i class="fa-solid fa-fire"></i>
+              <% when "Créatif" %>
+                <i class="fa-solid fa-palette"></i>
+              <% when "Explorateur" %>
+                <i class="fa-regular fa-compass"></i>
+              <% when "Zen" %>
+                <i class="fa-solid fa-leaf"></i>
+              <% else %>
+                <%= event.user.mood %>
+              <% end %>
+            </div>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= event.title %></h5>
+            <p class="card-text text-success">Participation confirmée</p>
+          </div>
+        </div>
       <% end %>
 
-      <div class="container-tchat">
-        <h2>Messages</h2>
-        <% if @chatrooms.any? %>
-          <ul class="chatroom-list">
-            <% @chatrooms.each do |chatroom| %>
-              <li class="tchat-link">
-                <%= link_to chatroom.event.title, event_chatroom_path(chatroom.event, chatroom), class: "chatroom-link" %>
-              </li>
-            <% end %>
-          </ul>
-        <% else %>
-          <p>Aucune discussion en cours. Rejoins un événement pour discuter avec les autres participants !</p>
-        <% end %>
+      <div class="text-center mt-2">
+        <%= link_to "Annuler", event_participation_path(event, event.participations.find_by(user: current_user)),
+                    method: :delete,
+                    data: { confirm: "Annuler ta participation ?" },
+                    class: "btn btn-warning" %>
       </div>
-
-    </div>
+    <% end %>
   </div>
+<% else %>
+  <p>Aucun événement à venir.</p>
+<% end %>
+
+
+     <div class="container-tchat">
+  <h2>Messages</h2>
+
+  <% if @chatrooms.any? %>
+    <div class="event-card-list">
+      <% @chatrooms.each do |chatroom| %>
+        <%= link_to event_chatroom_path(chatroom.event, chatroom), class: "event-card-link" do %>
+          <div class="event-card">
+            <div class="logo-container">
+              <%= cl_image_tag chatroom.event.photo.key, height: 300, width: 400, crop: :fill %>
+              <div class="event-badges mood-logo" title="<%= chatroom.event.user.mood %>">
+                <% case chatroom.event.user.mood %>
+                <% when "Fêtard" %>
+                  <i class="fa-solid fa-fire"></i>
+                <% when "Créatif" %>
+                  <i class="fa-solid fa-palette"></i>
+                <% when "Explorateur" %>
+                  <i class="fa-regular fa-compass"></i>
+                <% when "Zen" %>
+                  <i class="fa-solid fa-leaf"></i>
+                <% else %>
+                  <%= chatroom.event.user.mood %>
+                <% end %>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= chatroom.event.title %></h5>
+              <p class="card-text">Accéder à la discussion</p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p>Aucune discussion en cours. Rejoins un événement pour discuter avec les autres participants !</p>
+  <% end %>
 </div>
+
