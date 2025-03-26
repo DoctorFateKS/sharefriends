@@ -10,9 +10,22 @@
       <div class="ms-auto d-flex align-items-center">
         <% if current_user %>
           <!-- Mood -->
-          <div class="user-mood me-3">
-          <strong><%= current_user.profile.mood if current_user.profile.present? %></strong>
-          </div>
+            <% if current_user.profile.present? %>
+              <span class="user-mood-icon-navbar ms-2" title="<%= current_user.profile.mood %>">
+                <% case current_user.profile.mood %>
+                <% when "Fêtard" %>
+                  <i class="fa-solid fa-fire"></i>
+                <% when "Créatif" %>
+                  <i class="fa-solid fa-palette"></i>
+                <% when "Explorateur" %>
+                  <i class="fa-regular fa-compass"></i>
+                <% when "Zen" %>
+                  <i class="fa-solid fa-leaf"></i>
+                <% else %>
+                  <%= current_user.profile.mood %>
+                <% end %>
+              </span>
+              <% end %>
 
           <!-- Dropdown Menu Profil -->
           <div class="dropdown">
