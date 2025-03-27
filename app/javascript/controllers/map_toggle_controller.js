@@ -14,6 +14,7 @@ export default class extends Controller {
     console.log("état du toggle :", showMap);
 
     if (showMap) {
+
       this.mapTarget.style.display = "block";
       this.gridTarget.style.gridTemplateColumns = "1fr 1fr";
       this.searchTarget.style.gridColumn = "span 2";

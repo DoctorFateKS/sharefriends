@@ -35,13 +35,7 @@
         </div>
         <% end %>
 
-        <div class="switch-map">
-          <p class="show-map">Afficher Carte</p>
-          <label class="switch">
-            <input type="checkbox" id="toggle-map" data-action="change->map-toggle#toggleMap">
-            <span class="slider round"></span>
-          </label>
-        </div>
+        
       </div>
 
       <% @events.each do |event| %>
@@ -79,14 +73,5 @@
       <% end %>
 
     </div>
-
-    <div class="map-container" data-map-toggle-target="map">
-      <div class="map-index"
-      data-controller="map"
-      data-map-markers-value="<%= @markers.to_json %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
-    </div>
-
   </div>
 </div>
