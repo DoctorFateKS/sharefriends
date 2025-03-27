@@ -12,6 +12,12 @@
       <p> <%= @event.activity %></p>
     </div>
 
+    <% unless current_user == @event.user %>
+      <%= link_to profile_path(@event.user), class: "btn btn-outline-secondary", title: "Profil du créateur" do %>
+        <%= cl_image_tag @event.user.profile.photo.key, class: "avatar"%>
+      <% end %>
+    <% end %>
+
     <p class="inside-card"> <strong> Participants :</strong> <%= @event.participations.where(status:"accepted").count %> / <%= @event.max_participants %></p>
     <% if user_signed_in? %>
       <% participation = current_user.participations.find_by(event: @event) %>
