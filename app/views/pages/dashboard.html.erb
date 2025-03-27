@@ -31,6 +31,7 @@
           <%= cl_image_tag event.photo.key, height: 150, width: 350, crop: :fill, class: "event-img-dashboard" %>
           <%= link_to event_path(event), class: "event-card-link-dashboard" do %>
             <h5 class="card-title"><%= event.title %></h5>
+            <h6 class="card-date"><%= event.date.strftime("%d/%m/%Y à %H:%M") %></h6>
           <% end %>
         </div>
       </div>
@@ -54,6 +55,7 @@
           <%= cl_image_tag event.photo.key, height: 150, width: 350, crop: :fill, class: "event-img-dashboard" %>
           <%= link_to event_path(event), class: "event-card-link-dashboard" do %>
             <h5 class="card-title"><%= event.title %></h5>
+            <h6 class="card-date"><%= event.date.strftime("%d/%m/%Y à %H:%M") %></h6>
           <% end %>
         </div>
       </div>
