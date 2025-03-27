@@ -69,9 +69,9 @@ class EventsController < ApplicationController
   def destroy
     if current_user == @event.user
       @event.destroy
-      redirect_to events_path, notice: "Événement supprimé !"
+      redirect_to dashboard_path, notice: "Événement supprimé !"
     else
-      redirect_to events_path, alert: "Vous ne pouvez pas supprimer cet événement."
+      redirect_to dashboard_path, alert: "Vous ne pouvez pas supprimer cet événement."
     end
   end
 
