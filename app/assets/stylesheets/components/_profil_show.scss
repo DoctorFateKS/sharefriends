@@ -9,7 +9,9 @@
   font-family: 'Alfa Slab One';
   color: rgb(116, 41, 41);
   font-size: 24px;
-  margin-left: 400px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
 }
 .titre-profil{
 color: rgb(224, 210, 210);
@@ -90,15 +92,20 @@ background: linear-gradient(120deg, #693333, #F8C7C7);
 	left: 34px;
 }
 
+.block{
+  margin-top: 40px;
+}
+
 .block1{
   padding-top: 20px;
   padding-left: 20px;
   display: inline-grid;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 .block2{
   padding-top: 20px;
   padding-left: 20px;
-  margin-right: 100px;
 
 }
 .fond-block1{
@@ -106,14 +113,22 @@ background: linear-gradient(120deg, #693333, #F8C7C7);
 }
 .fond-block2{
   display: inline-grid;
-  margin-right: 15px;
 }
 .show-content-center{
   position: relative;
-  margin-top: 15px;
-  margin-left: 15px;
-
-  // transform: translate(-50%, -50%);
-  width: 80%;
-  height: auto;
+}
+.devise-form-login-profil {
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 12px;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  outline-offset: 3px;
+  outline: 1px solid #743e3f;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.first-theme{
+  color: #eeece1;
+  font-family: 'Alfa Slab One';
+  font-size: 29px;
 }
