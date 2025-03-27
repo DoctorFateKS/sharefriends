@@ -13,7 +13,7 @@
     </div>
 
     <% unless current_user == @event.user %>
-      <%= link_to profile_path(@event.user), class: "btn btn-outline-secondary", title: "Profil du créateur" do %>
+      <%= link_to profile_path(@event.user), class: "btn button-profile", title: "Profil du créateur" do %>
         <%= cl_image_tag @event.user.profile.photo.key, class: "avatar"%>
       <% end %>
     <% end %>
@@ -35,7 +35,7 @@
     <% end %>
     <% if current_user == @event.user %>
       <% if @pending_participations %>
-        <h2>Ils veulent participer à ton événement :</h2>
+        <h2 class="text-participants">Ils veulent participer à ton événement :</h2>
         <ul>
           <% @pending_participations.each do |participation| %>
             <li style="display: flex; align-items: center; gap: 10px;">
@@ -45,7 +45,7 @@
               <%= link_to reject_participation_path(participation), data: { turbo_method: :patch } do %>
                 <div class="btn btn-warning">Refuser</div>
               <% end %>
-              <%= link_to profile_path(participation.user), class: "btn btn-outline-secondary", title: "Voir le profil" do %>
+              <%= link_to profile_path(participation.user), class: "btn button-profile", title: "Voir le profil" do %>
                 <%= cl_image_tag participation.user.profile.photo.key, class: "avatar"%>
               <% end %>
             </li>
@@ -57,11 +57,11 @@
     <% end %>
 
  <% if @accepted_participations %>
-  <h2>Ils participent à ton événement :</h2>
+  <h2 class="text-participants">Ils participent à ton événement :</h2>
   <ul>
     <% @accepted_participations.each do |participation| %>
       <li>
-        <%= link_to profile_path(participation.user), class: "btn btn-outline-secondary", title: "Voir le profil" do %>
+        <%= link_to profile_path(participation.user), class: "btn button-profile", title: "Voir le profil" do %>
           <%= cl_image_tag participation.user.profile.photo.key, class: "avatar"%>
         <% end %>
       </li>
