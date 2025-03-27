@@ -1,0 +1,5 @@
+# config/meta.yml
+meta_product_name: "ShareFriends"
+meta_title: "ShareFriends - Vos futurs amis sont ici !"
+meta_description: "Sharefriends est une appli facile et interactive qui met tout son possible pour mettre en relation de manière sécurisée. Vous n'êtes plus qu'à un clic de vos prochains amis."
+meta_image: "logo2.png" # should exist in `app/assets/images/`
