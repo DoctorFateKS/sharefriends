@@ -43,7 +43,7 @@
                 <div class="btn btn-primary">Valider</div>
               <% end %>
               <%= link_to reject_participation_path(participation), data: { turbo_method: :patch } do %>
-                <div class="btn btn-warning">Refuser</div>
+                <div class="btn btn-primary">Refuser</div>
               <% end %>
               <%= link_to profile_path(participation.user), class: "btn button-profile", title: "Voir le profil" do %>
                 <%= cl_image_tag participation.user.profile.photo.key, class: "avatar"%>
@@ -61,7 +61,7 @@
   <ul>
     <% @accepted_participations.each do |participation| %>
       <li>
-        <%= link_to profile_path(participation.user), class: "btn button-profile", title: "Voir le profil" do %>
+        <%= link_to profile_path(participation.user), class: "btn button-profile lign-profile", title: "Voir le profil" do %>
           <%= cl_image_tag participation.user.profile.photo.key, class: "avatar"%>
         <% end %>
       </li>
