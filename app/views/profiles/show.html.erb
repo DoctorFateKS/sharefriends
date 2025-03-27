@@ -1,26 +1,27 @@
 <div class="container-show color-block">
   <h1 class="titre-profil">Mon Profil</h1>
-  <% if @profile.photo.attached? %>
-  <%= cl_image_tag @profile.photo.key, height: 200, width: 200, crop: :fill, class: "user-photo" %>
-  <% end %>
+  <div class="d-flex">
+    <% if @profile.photo.attached? %>
+    <%= cl_image_tag @profile.photo.key, height: 200, width: 200, crop: :fill, class: "user-photo" %>
+    <% end %>
 
 
-  <div class="profile-container">
-    <div class="profile-description">
-      <div class="show-content-center row-devise ">
-        <div class="col-12 col-lg-8 devise-form-login block">
-          <p><strong>Prénom :</strong> <%= @profile.first_name %></p>
-          <p><strong>Nom :</strong> <%= @profile.last_name %></p>
-        </div>
-        </div>
-        <div class="show-content-center row-devise fond-block1">
-          <div class="col-12 col-lg-8 devise-form-login block1">
-            <p><strong>Mood actuel :</strong> <%= @profile.mood %></p>
+    <div class="profile-container w-50">
+      <div class="profile-description">
+        <div class="show-content-center row-devise ">
+          <div class="devise-form-login-profil block">
+            <p><strong class="first-theme">Prénom :</strong> <%= @profile.first_name %></p>
+            <p class="mb-0"><strong class="first-theme">Nom :</strong> <%= @profile.last_name %></p>
           </div>
         </div>
-        <div class="row show-content-center row-devise fond-block2">
-          <div class="col-12 col-lg-8 devise-form-login block2">
-            <p><strong>Centres d'intérêt :</strong></p>
+        <div class="show-content-center row-devise fond-block1">
+          <div class="devise-form-login block1">
+            <p><strong class="first-theme">Mood actuel :</strong> <%= @profile.mood %></p>
+          </div>
+        </div>
+        <div class="show-content-center row-devise fond-block2">
+          <div class="devise-form-login block2">
+            <p><strong class="first-theme">Centres d'intérêt :</strong></p>
             <% if @profile.hobbies.any? %>
               <ul class="hobbie-list">
                 <% ["Geek-Créatif", "Sport-Aventure", "Food-Partage", "Chill-Cosy"].each do |hobbie| %>
@@ -34,11 +35,11 @@
 
           </div>
         </div>
-          <%= link_to " Modifier mon profil", edit_profile_path(@profile), class: "btn button-show" %>
+        <%= link_to " Modifier mon profil", edit_profile_path(@profile), class: "btn button-show" %>
+      </div>
     </div>
   </div>
-      <div class="event-return-button-show">
-          <%= link_to "⬅ Retour", dashboard_path, class: "event-return" %>
-      </div>
+  <div class="event-return-button-show">
+        <%= link_to "⬅ Retour", dashboard_path, class: "event-return" %>
     </div>
 </div>
