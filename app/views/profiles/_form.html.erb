@@ -8,25 +8,36 @@
       <legend>Quel est ton mood du moment ? </legend>
       <div class="mood-options">
         <% ["Fêtard", "Créatif", "Explorateur", "Zen"].each do |mood| %>
-          <label class="mood-radio">
-            <%= f.radio_button :mood, mood, checked: @profile.mood == mood %>
-            <%= mood %>
-          </label>
-        <% end %>
-      </div>
-    </fieldset>
+        <% unless @profile.mood == mood %>
+        <label class="mood-radio" data-controller="toggle-button">
+          <%= f.radio_button :mood, mood, checked: false %>
 
-    <fieldset class="form-group">
-      <legend>Centres d’intérêt (min 1, max 4)</legend>
-      <div class="hobbie-options">
-        <% ["Geek-Créatif", "Sport-Aventure", "Food-Partage", "Chill-Cosy"].each do |hobby| %>
-          <label class="hobbie-checkbox">
-            <%= check_box_tag "profile[hobbies][]", hobby, @profile.hobbie&.include?(hobby) %>
-            <%= hobby %>
-          </label>
+          <%= mood %>
+        </label>
         <% end %>
-      </div>
-    </fieldset>
+      <% end %>
+    </div>
+  </fieldset>
+
+ <fieldset class="form-group">
+  <legend>Centres d’intérêt (min 1, max 4)</legend>
+  <div class="hobbie-options">
+   <% ["Geek-Créatif", "Sport-Aventure", "Food-Partage", "Chill-Cosy"].each_with_index do |hobby, index| %>
+    <% hobby_id = "hobbie_#{index}" %>
+    <div class="hobbie-checkbox">
+      <%= check_box_tag "profile[hobbies][]", hobby, @profile.hobbie&.include?(hobby),
+        id: hobby_id,
+        class: "hidden-checkbox",
+        data: {
+          action: "change->toggle-button#toggleHobby",
+          toggle_button_target: "hobbieCheckbox"
+        } %>
+      <label for="<%= hobby_id %>" class="hobbie-label"><%= hobby %></label>
+    </div>
+  <% end %>
+  </div>
+</fieldset>
+
     <% if  params[:action] == "edit" %>
       <%= f.button :submit, "Modifier mon profil", class: "btn button-event" %>
      <% else %>
