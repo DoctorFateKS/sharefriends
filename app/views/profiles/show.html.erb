@@ -24,7 +24,7 @@
             <% if @profile.hobbies.any? %>
               <ul class="hobbie-list">
                 <% ["Geek-Créatif", "Sport-Aventure", "Food-Partage", "Chill-Cosy"].each do |hobbie| %>
-                  <li><%= hobbie %><%="selectionner" if @profile.hobbies.include?(hobbie) %></li>
+                  <li><%= hobbie %><%=" ✔" if @profile.hobbies.include?(hobbie) %></li>
                 <% end %>
 
               </ul>

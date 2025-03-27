@@ -47,9 +47,9 @@
   margin-top: 150px;
   margin-bottom: 150px;
   display: flow;
-  background-color: rgba(224, 224, 223, 0.3);
+  background-color: rgba(211, 211, 200, 0.3);
 
-  border-radius: 5px;
+  border-radius: 30px;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
   overflow: auto;
 }
@@ -65,22 +65,68 @@
   box-shadow: 2px 2px 7px rgba(255, 255, 255, 0.5);
   overflow: auto;
 }
-.container-cards-dashboard{
 
+.chatroom-profile-container{
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 150px;
+  padding: 30px;
+  background: #dacdcd;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  // Titre du container
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: antiquewhite;
+    font-family: 'Garamond';
+    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  // Paragraphe du container
+  p {
+    font-size: 16px;
+    color: rgb(245, 233, 218);
+    font-family: 'helvetica';
+    margin-bottom: 20px;
+  }
+}
+.button-chatroom{
+  padding: 13px;
+  color: antiquewhite;
+  background-color: #6b1d1d;
+  font-family: 'Alfa Slab One';
+  border-radius: 5px;
+  margin: 20px 0px 100px;
+  font-family: helvetica;
+  font-size: 1em;
+  color: #eeece1;
+  border: 1px solid #2b0d0d;
+  box-shadow: 5px 3px 8px #0c0c0c;
+}
+.h2-chatroom{
+  font-size: 40px;
+  color: antiquewhite;
+  font-family: 'Garamond';
+  margin-top: 30px;
+  margin-bottom: 15px;
 }
 
-.event-card-link-dashboard{
-
-}
-
-.event-card-dashboard{
-
-}
-
-.event-card-list-msg{
-
-}
-
-.event-card-msg{
-  
+.button-choise-event{
+  padding: 13px;
+  color: #fff;
+  background-color: #6b1d1d;
+  font-family: 'Alfa Slab One';
+  border-radius: 5px;
+  // margin: 100px 0px 100px; padding: 13px;
+  font-family: arial;
+  font-size: 1em;
+  color: #eeece1;
+  border: 1px solid #2b0d0d;
+  box-shadow: 5px 3px 8px #0c0c0c;
 }
